@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Vue Example</title>
+    <style media="screen">
+      *{
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h2>Autocomplete</h2>
+      <ui-autocomplete :name="autocomplete.name" :items="autocomplete.items" width="200px" :selected="autocomplete.selected"></ui-autocomplete>
+      <h2>Checkboxes</h2>
+      <ui-checkbox :name="checkbox1.name" :checked="checkbox1.checked" text="tick" :type="checkbox1.type"></ui-checkbox>
+      <ui-checkbox :name="checkbox2.name" :checked="checkbox2.checked" text="cross" :type="checkbox2.type"></ui-checkbox>
+      <h2>Radiobuttons</h2>
+      <ui-radiobutton-group :name="radiobuttonGroup.name" :radiobuttons="radiobuttonGroup.radiobuttons" :selected="radiobuttonGroup.selected"></ui-radiobutton-group>
+      <h2>Dropdown</h2>
+      <ui-dropdown :items.sync="dropdownItems"></ui-dropdown>
+      <div style="width:400px">
+        <!--  <ui-slider>
+          <div><img src="http://unsplash.it/g/400/300?random" alt=""></div>
+          <div><img src="http://unsplash.it/g/400/301?random" alt=""></div>
+          <div><img src="http://unsplash.it/g/400/302?random" alt=""></div>
+          <div><img src="http://unsplash.it/g/400/303?random" alt=""></div>
+          <div><img src="http://unsplash.it/g/400/304?random" alt=""></div>
+        </ui-slider>  -->
+      </div>
+    </div>
+    <script src="/dist/bundle.js"></script>
+  </body>
+</html>
