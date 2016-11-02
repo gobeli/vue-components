@@ -7,37 +7,59 @@
       <path class="icon" v-show="showTick" d="M6 12 L8 14 L14 6" />
     </svg>
     <div class="label">
-      {{text}}
+      {{checkbox.text}}
     </div>
   </div>
 </template>
 
 <script>
-import {EventHub} from '../helpers/eventHub'
+import EventHub from '../helpers/eventHub'
+
+/**
+  * @desc Describes props of the checkbox
+*/
+class Checkbox {
+  /**
+    * @param String name - Name of the control
+    * @param Boolean checked - Initial check state of the control
+    * @param string text - Text which will be displayed
+    * @param string type - Type of the checkbox ('cross' or 'tick')
+  */
+  constructor(name,checked,text,type) {
+    this.name = name
+    this.checked = checked
+    this.text = text
+    this.type = type
+    this.changedEventName = `${this.name}_CheckedChanged`
+
+    EventHub.$on(this.changedEventName, () => {
+      this.checked = !this.checked
+    })
+  }
+}
+
 export default {
-  name: "ui-checkbox",
+  uiClass: Checkbox,
+  name: 'ui-checkbox',
   props:{
-    name: String,
-    checked: Boolean,
-    text: String,
-    type: String
+    checkbox: Checkbox
   },
   computed: {
       showCross(){
-        return this.type == "cross" && this.checked
+        return this.checkbox.type == 'cross' && this.checkbox.checked
       },
       showTick(){
-        return this.type == "tick" && this.checked
+        return this.checkbox.type == 'tick' && this.checkbox.checked
       }
   },
   methods: {
     toggle(){
-      EventHub.$emit(`${this.name}_CheckedChanged`,!this.checked)
+      EventHub.$emit(this.checkbox.changedEventName)
     }
   },
   mounted(){
-    if (this.type != "cross" && this.type != "tick") {
-      console.error("The checkbox type has to be either \"cross\" or \"tick\"!")
+    if (this.checkbox.type != 'cross' && this.checkbox.type != 'tick') {
+      console.error('The checkbox type has to be either \'cross\' or \'tick\'!')
     }
   }
 }

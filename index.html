@@ -7,28 +7,78 @@
       *{
         font-family: sans-serif;
       }
+      body{
+        margin: 0;
+      }
+      #app{
+        padding: 1rem;
+      }
+      pre{
+        padding: .75rem;
+        margin-top: 5px;
+        box-sizing: border-box;
+        background-color: #EEE;
+        border: 1px solid #333;
+        color: #333;
+      }
     </style>
   </head>
   <body>
     <div id="app">
       <h2>Autocomplete</h2>
-      <ui-autocomplete :name="autocomplete.name" :items="autocomplete.items" width="200px" :selected="autocomplete.selected"></ui-autocomplete>
+      <ui-autocomplete :autocomplete="autocomplete">
+        <ui-autocomplete-item v-for="country in countries" :value="country" :text="country"></ui-autocomplete-item>
+      </ui-autocomplete>
+      <pre>Selected:
+{{autocomplete.selected}}</pre>
+
       <h2>Checkboxes</h2>
-      <ui-checkbox :name="checkbox1.name" :checked="checkbox1.checked" text="tick" :type="checkbox1.type"></ui-checkbox>
-      <ui-checkbox :name="checkbox2.name" :checked="checkbox2.checked" text="cross" :type="checkbox2.type"></ui-checkbox>
+      <ui-checkbox :checkbox="checkbox1"></ui-checkbox>
+      <ui-checkbox :checkbox="checkbox2"></ui-checkbox>
+      <pre>Checkbox1: {{checkbox1.checked}}
+Checkbox2: {{checkbox2.checked}}</pre>
+
       <h2>Radiobuttons</h2>
-      <ui-radiobutton-group :name="radiobuttonGroup.name" :radiobuttons="radiobuttonGroup.radiobuttons" :selected="radiobuttonGroup.selected"></ui-radiobutton-group>
+      <ui-radiobutton-group :radiobutton-group="radiobuttonGroup">
+        <ui-radiobutton name="rb1">Radiobutton 1</ui-radiobutton>
+        <ui-radiobutton name="rb2">Radiobutton 2</ui-radiobutton>
+        <ui-radiobutton name="rb3">Radiobutton 3</ui-radiobutton>
+      </ui-radiobutton-group>
+      <pre>Selected:
+{{radiobuttonGroup.selectedName}}</pre>
+
       <h2>Dropdown</h2>
-      <ui-dropdown :items.sync="dropdownItems"></ui-dropdown>
+      <ui-dropdown :dropdown="dropdown">
+        <ui-dropdown-item value="DropdownItem1" text="First"></ui-dropdown-item>
+        <ui-dropdown-item value="DropdownItem2" text="Second"></ui-dropdown-item>
+        <ui-dropdown-item value="DropdownItem3" text="Third"></ui-dropdown-item>
+        <ui-dropdown-item value="DropdownItem4" text="Fourth"></ui-dropdown-item>
+      </ui-dropdown>
+      <pre>Selected:
+{{dropdown.selected}}</pre>
+
+      <h2>Checked Dropdown</h2>
+      <ui-checked-dropdown :checked-dropdown="checkedDropdown">
+        <ui-checked-dropdown-item value="cdi1" text="One"></ui-checked-dropdown-item>
+        <ui-checked-dropdown-item value="cdi2" text="Two"></ui-checked-dropdown-item>
+        <ui-checked-dropdown-item value="cdi3" text="Third"></ui-checked-dropdown-item>
+        <ui-checked-dropdown-item value="cdi4" text="Fourth"></ui-checked-dropdown-item>
+        <ui-checked-dropdown-item value="cdi5" text="Fifth"></ui-checked-dropdown-item>
+        <ui-checked-dropdown-item value="cdi6" text="Sixth"></ui-checked-dropdown-item>
+      </ui-checked-dropdown>
+      <pre>Selected items:
+{{checkedDropdown.selectedItems}}</pre>
+      <!--
+      <h2>Slider</h2>
       <div style="width:400px">
-        <!--  <ui-slider>
+        <ui-slider>
           <div><img src="http://unsplash.it/g/400/300?random" alt=""></div>
           <div><img src="http://unsplash.it/g/400/301?random" alt=""></div>
           <div><img src="http://unsplash.it/g/400/302?random" alt=""></div>
           <div><img src="http://unsplash.it/g/400/303?random" alt=""></div>
           <div><img src="http://unsplash.it/g/400/304?random" alt=""></div>
-        </ui-slider>  -->
-      </div>
+        </ui-slider>
+      </div>-->
     </div>
     <script src="/dist/bundle.js"></script>
   </body>
