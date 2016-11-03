@@ -28,7 +28,6 @@ class Autocomplete {
     this.width = width
     this.selected = selected
     this.focused = selected
-    this.selectedChangedEventName = `${this.name}_SelectedChanged`
   }
 }
 

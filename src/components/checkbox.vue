@@ -30,11 +30,6 @@ class Checkbox {
     this.checked = checked
     this.text = text
     this.type = type
-    this.changedEventName = `${this.name}_CheckedChanged`
-
-    EventHub.$on(this.changedEventName, () => {
-      this.checked = !this.checked
-    })
   }
 }
 
@@ -54,7 +49,7 @@ export default {
   },
   methods: {
     toggle(){
-      EventHub.$emit(this.checkbox.changedEventName)
+      this.checked = !this.checked
     }
   },
   mounted(){
