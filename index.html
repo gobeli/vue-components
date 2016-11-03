@@ -3,7 +3,18 @@
   <head>
     <meta charset="utf-8">
     <title>Vue Example</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
     <style media="screen">
+      body{
+        margin: 1rem;
+      }
+      .highlight{
+        padding: .5rem;
+        background-color: #f7f7f9
+      }
+    </style>
+    <!--<style media="screen">
       *{
         font-family: sans-serif;
       }
@@ -21,52 +32,54 @@
         border: 1px solid #333;
         color: #333;
       }
-    </style>
+    </style>-->
   </head>
   <body>
     <div id="app">
       <h2>Autocomplete</h2>
-      <ui-autocomplete :autocomplete="autocomplete">
+      <ui-autocomplete style="min-width: 300px" :autocomplete="autocomplete">
         <ui-autocomplete-item v-for="country in countries" :value="country" :text="country"></ui-autocomplete-item>
       </ui-autocomplete>
-      <pre>Selected:
+<pre class="highlight">Selected:
 {{autocomplete.selected}}</pre>
 
       <h2>Checkboxes</h2>
       <ui-checkbox :checkbox="checkbox1"></ui-checkbox>
       <ui-checkbox :checkbox="checkbox2"></ui-checkbox>
-      <pre>Checkbox1: {{checkbox1.checked}}
+      <pre class="highlight">Checkbox1: {{checkbox1.checked}}
 Checkbox2: {{checkbox2.checked}}</pre>
 
       <h2>Radiobuttons</h2>
       <ui-radiobutton-group :radiobutton-group="radiobuttonGroup">
-        <ui-radiobutton name="rb1">Radiobutton 1</ui-radiobutton>
-        <ui-radiobutton name="rb2">Radiobutton 2</ui-radiobutton>
-        <ui-radiobutton name="rb3">Radiobutton 3</ui-radiobutton>
+        <ui-radiobutton name="rb1" size="20px">Radiobutton 1</ui-radiobutton>
+        <ui-radiobutton name="rb3" size="20px">Radiobutton 3</ui-radiobutton>
+        <ui-radiobutton name="rb2" size="20px">Radiobutton 2</ui-radiobutton>
       </ui-radiobutton-group>
-      <pre>Selected:
+      <pre class="highlight">Selected:
 {{radiobuttonGroup.selectedName}}</pre>
 
       <h2>Dropdown</h2>
-      <ui-dropdown :dropdown="dropdown">
+      <ui-dropdown style="min-width: 300px" :dropdown="dropdown">
         <ui-dropdown-item value="DropdownItem1" text="First"></ui-dropdown-item>
         <ui-dropdown-item value="DropdownItem2" text="Second"></ui-dropdown-item>
         <ui-dropdown-item value="DropdownItem3" text="Third"></ui-dropdown-item>
         <ui-dropdown-item value="DropdownItem4" text="Fourth"></ui-dropdown-item>
       </ui-dropdown>
-      <pre>Selected:
+      <pre class="highlight">Selected:
 {{dropdown.selected}}</pre>
 
       <h2>Checked Dropdown</h2>
-      <ui-checked-dropdown :checked-dropdown="checkedDropdown">
+      <ui-checked-dropdown style="min-width: 300px" :checked-dropdown="checkedDropdown">
         <ui-checked-dropdown-item value="cdi1" text="One"></ui-checked-dropdown-item>
         <ui-checked-dropdown-item value="cdi2" text="Two"></ui-checked-dropdown-item>
-        <ui-checked-dropdown-item value="cdi3" text="Third"></ui-checked-dropdown-item>
-        <ui-checked-dropdown-item value="cdi4" text="Fourth"></ui-checked-dropdown-item>
-        <ui-checked-dropdown-item value="cdi5" text="Fifth"></ui-checked-dropdown-item>
-        <ui-checked-dropdown-item value="cdi6" text="Sixth"></ui-checked-dropdown-item>
+        <ui-checked-dropdown-item value="cdi3" text="Three"></ui-checked-dropdown-item>
+        <ui-checked-dropdown-item value="cdi4" text="Four"></ui-checked-dropdown-item>
+        <ui-checked-dropdown-item value="cdi5" text="Five"></ui-checked-dropdown-item>
+        <ui-checked-dropdown-item value="cdi6" text="Six"></ui-checked-dropdown-item>
+        <ui-checked-dropdown-item value="cdi7" text="Seven"></ui-checked-dropdown-item>
+        <ui-checked-dropdown-item value="cdi8" text="Eight"></ui-checked-dropdown-item>
       </ui-checked-dropdown>
-      <pre>Selected items:
+      <pre class="highlight">Selected items:
 {{checkedDropdown.selectedItems}}</pre>
       <!--
       <h2>Slider</h2>

@@ -1,0 +1,36 @@
+.list-group{
+  display:block;
+  &.dropdown{
+    position: absolute;
+    overflow-y: scroll;
+    max-height: calc((3rem + 2px)*3);
+  }
+  .list-group-item{
+    cursor: pointer;
+    overflow-x: hidden;
+    white-space: nowrap;
+  }
+}
+
+.dropdown-toggle{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.icon{
+  position: absolute;
+  padding:0 .5rem;
+  height:100%;
+  right: 0;
+  top: 0;
+  background-color: #FFF;
+  display: flex;
+  align-items: center;
+  svg{
+    transition: transform .25s ease;
+    &.rotate{
+      transform: rotate(180deg);
+    }
+  }
+}
