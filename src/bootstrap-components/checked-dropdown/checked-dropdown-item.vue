@@ -36,7 +36,7 @@ export default {
   },
   mounted(){
     this.$watch('checkbox.checked', (n,o) => {
-      this.$parent.setSelected();
+      this.$parent.$emit('selected-changed')
     })
   },
   components: {

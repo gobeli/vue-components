@@ -59,7 +59,7 @@ Checkbox2: {{checkbox2.checked}}</pre>
 {{radiobuttonGroup.selectedName}}</pre>
 
       <h2>Dropdown</h2>
-      <ui-dropdown style="min-width: 300px" :dropdown="dropdown">
+      <ui-dropdown style="width: 300px" :dropdown="dropdown" placeholder="Please select">
         <ui-dropdown-item value="DropdownItem1" text="First"></ui-dropdown-item>
         <ui-dropdown-item value="DropdownItem2" text="Second"></ui-dropdown-item>
         <ui-dropdown-item value="DropdownItem3" text="Third"></ui-dropdown-item>
@@ -69,7 +69,7 @@ Checkbox2: {{checkbox2.checked}}</pre>
 {{dropdown.selected}}</pre>
 
       <h2>Checked Dropdown</h2>
-      <ui-checked-dropdown style="min-width: 300px" :checked-dropdown="checkedDropdown">
+      <ui-checked-dropdown style="width: 300px" :checked-dropdown="checkedDropdown" placeholder="Please select">
         <ui-checked-dropdown-item value="cdi1" text="One"></ui-checked-dropdown-item>
         <ui-checked-dropdown-item value="cdi2" text="Two"></ui-checked-dropdown-item>
         <ui-checked-dropdown-item value="cdi3" text="Three"></ui-checked-dropdown-item>
@@ -81,17 +81,8 @@ Checkbox2: {{checkbox2.checked}}</pre>
       </ui-checked-dropdown>
       <pre class="highlight">Selected items:
 {{checkedDropdown.selectedItems}}</pre>
-      <!--
-      <h2>Slider</h2>
-      <div style="width:400px">
-        <ui-slider>
-          <div><img src="http://unsplash.it/g/400/300?random" alt=""></div>
-          <div><img src="http://unsplash.it/g/400/301?random" alt=""></div>
-          <div><img src="http://unsplash.it/g/400/302?random" alt=""></div>
-          <div><img src="http://unsplash.it/g/400/303?random" alt=""></div>
-          <div><img src="http://unsplash.it/g/400/304?random" alt=""></div>
-        </ui-slider>
-      </div>-->
+      <h2>Grid</h2>
+      <ui-grid :grid="grid"></ui-grid>
     </div>
     <script src="/dist/bundle.js"></script>
   </body>

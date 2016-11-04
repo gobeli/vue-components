@@ -1,6 +1,6 @@
 <template lang="html">
   <a href="#" class="dropdown-item" @click.stop.prevent="select()"
-    v-bind:class="{ 'active': value == $parent.dropdown.selected.value }">
+    v-bind:class="{ 'active': this.$parent.selected != null && this.value == this.$parent.selected.value }">
     {{text}}
   </a>
 </template>
@@ -27,8 +27,7 @@ export default {
   },
   methods: {
     select() {
-      this.$parent.dropdown.selected = this.dropdownItem;
-      this.$parent.toggle()
+      this.$parent.$emit('selected-changed', this.dropdownItem)
     }
   }
 }

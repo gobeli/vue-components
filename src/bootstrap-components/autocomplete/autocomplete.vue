@@ -32,7 +32,7 @@ class Autocomplete {
 export default {
   uiClass: Autocomplete,
   name: "autocomplete",
-  data () {
+  data(){
     return {
       search: "",
       autocompleteItems: []
@@ -52,6 +52,10 @@ export default {
   },
   mounted () {
     this.autocompleteItems = this.$children.map(c => c.autocompleteItem)
+
+    this.$on('selected-changed', selected => {
+      this.select(selected)
+    })
   },
   methods: {
     search_keyup(next){

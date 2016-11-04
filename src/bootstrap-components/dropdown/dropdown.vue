@@ -1,7 +1,7 @@
 <template lang="html">
-  <div class="btn-group">
+  <div class="btn-group" v-on-clickaway="close">
     <button class="btn btn-secondary dropdown-toggle"  @click="toggle" type="button">
-      {{this.dropdown.selected.text}}
+      {{(dropdown.selected ? dropdown.selected.text : placeholder)}}
     </button>
     <div class="dropdown-menu" v-bind:style="{maxHeight: dropdownHeight}" v-show="!isClosed">
       <slot></slot>
@@ -10,17 +10,17 @@
 </template>
 
 <script>
-import DropdownItem from './dropdown-item.vue'
+import { mixin as clickaway } from 'vue-clickaway'
 
 class Dropdown{
   /**
     * @param String name - Name of the control
-    * @param String selected - Default text / selected Item
+    * @param DropdownItem selected - Default selected Item / pass null if you want the placeholder to show
     * @param Number displayedItems - Number of items shown when the dropdown is opened
   */
   constructor(name, selected, displayedItems) {
     this.name = name
-    this.selected = new DropdownItem.uiClass("",selected)
+    this.selected = null
     this.displayedItems = displayedItems
   }
 }
@@ -28,13 +28,15 @@ class Dropdown{
 export default {
   uiClass: Dropdown,
   name: "ui-dropdown",
+  mixins: [ clickaway ],
   data() {
     return {
       isClosed: true
     }
   },
   props:{
-    dropdown: Dropdown
+    dropdown: Dropdown,
+    placeholder: String
   },
   computed: {
     dropdownHeight(){
@@ -45,7 +47,16 @@ export default {
   methods: {
     toggle() {
       this.isClosed = !this.isClosed
+    },
+    close(){
+      if (!this.isClosed) this.toggle()
     }
+  },
+  mounted(){
+    this.$on('selected-changed', selected => {
+      this.dropdown.selected = selected
+      this.toggle()
+    })
   }
 }
 </script>
@@ -62,6 +73,10 @@ export default {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      span{
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
 }

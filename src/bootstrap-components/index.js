@@ -7,10 +7,12 @@ import autocomplete from './autocomplete/autocomplete.vue'
 import autocompleteItem from './autocomplete/autocomplete-item.vue'
 import checkedDropdown from './checked-dropdown/checked-dropdown.vue'
 import checkedDropdownItem from './checked-dropdown/checked-dropdown-item.vue'
+import grid from './grid/grid.vue'
 export default {
   checkbox,
   radiobuttonGroup, radiobutton,
   dropdown, dropdownItem,
   checkedDropdown, checkedDropdownItem,
-  autocomplete, autocompleteItem
+  autocomplete, autocompleteItem,
+  grid
 }

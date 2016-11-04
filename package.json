@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "vue": "^2.0.3",
+    "vue-clickaway": "^2.0.0",
     "vue-hot-reload-api": "^2.0.6"
   },
   "devDependencies": {

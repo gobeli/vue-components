@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     select(){
-      this.$parent.select(this.autocompleteItem)
+      this.$parent.$emit('selected-changed',this.autocompleteItem)
     }
   }
 }

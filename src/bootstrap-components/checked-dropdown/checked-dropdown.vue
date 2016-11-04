@@ -1,7 +1,7 @@
 <template lang="html">
-  <div class="btn-group">
+  <div class="btn-group" v-on-clickaway="close">
     <button class="btn btn-secondary dropdown-toggle"  @click="toggle" type="button">
-      {{selectedString}}
+      <span>{{selectedString}}</span>
     </button>
     <div class="dropdown-menu" v-bind:style="{maxHeight: dropdownHeight}" v-show="!isClosed">
       <slot></slot>
@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import { mixin as clickaway } from 'vue-clickaway'
+
 class CheckedDropdown {
   constructor(name, displayedItems, ...selectedItems) {
     this.name = name
@@ -20,6 +22,8 @@ class CheckedDropdown {
 
 export default {
   uiClass: CheckedDropdown,
+  name: "ui-checked-dropdown",
+  mixins: [ clickaway ],
   data() {
     return {
       isClosed: true,
@@ -27,12 +31,13 @@ export default {
     }
   },
   props: {
-    checkedDropdown: CheckedDropdown
+    checkedDropdown: CheckedDropdown,
+    placeholder: String
   },
   computed: {
     selectedString() {
       let s = this.checkedDropdown.selectedItems.map(item => item.text).join(', ')
-      return s == "" ? "-" : s
+      return s == "" ? this.placeholder : s
     },
     dropdownHeight(){
       const i = this.checkedDropdown.displayedItems
@@ -43,9 +48,14 @@ export default {
     toggle(){
       this.isClosed = !this.isClosed
     },
-    setSelected(){
-      this.checkedDropdown.selectedItems = this.$children.filter(c => c.checkbox.checked).map(c => c.checkedDropdownItem)
+    close(){
+      if (!this.isClosed) this.toggle()
     }
+  },
+  mounted(){
+    this.$on('selected-changed', () => {
+      this.checkedDropdown.selectedItems = this.$children.filter(c => c.checkbox.checked).map(c => c.checkedDropdownItem)
+    })
   }
 }
 </script>
@@ -61,6 +71,10 @@ export default {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      span{
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
 }
