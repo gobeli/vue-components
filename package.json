@@ -7,6 +7,7 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
+    "bootstrap": "^4.0.0-alpha.5",
     "vue": "^2.0.3",
     "vue-clickaway": "^2.0.0",
     "vue-hot-reload-api": "^2.0.6"
