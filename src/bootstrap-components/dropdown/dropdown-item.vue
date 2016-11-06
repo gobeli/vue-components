@@ -1,13 +1,11 @@
 <template lang="html">
-  <li class="item" @click="select()"
-    v-bind:class="{ 'selected': value == $parent.dropdown.selected.value }">
+  <a href="#" class="dropdown-item" @click.stop.prevent="select()"
+    v-bind:class="{ 'active': this.$parent.selected != null && this.value == this.$parent.selected.value }">
     {{text}}
-  </li>
+  </a>
 </template>
 
 <script>
-import EventHub from '../../helpers/eventHub'
-
 class DropdownItem {
   constructor(value,text) {
     this.value = value
@@ -29,7 +27,7 @@ export default {
   },
   methods: {
     select() {
-      this.$parent.dropdown.selected = this.dropdownItem;
+      this.$parent.$emit('selected-changed', this.dropdownItem)
     }
   }
 }

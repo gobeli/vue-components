@@ -1,9 +1,9 @@
 <template lang="html">
-  <li class="item color-light"
-    v-bind:class="{ focused: autocompleteItem == $parent.autocomplete.focused }"
+  <a class="dropdown-item"
+    v-bind:class="{ active: autocompleteItem == $parent.autocomplete.focused }"
     @click="select()" v-html="highlightedText"
     v-show="$parent.filteredItems.indexOf(autocompleteItem) >= 0">
-  </li>
+  </a>
 </template>
 
 <script>
@@ -34,8 +34,12 @@ export default {
   },
   methods: {
     select(){
-      this.$parent.select(this.autocompleteItem)
+      this.$parent.$emit('selected-changed',this.autocompleteItem)
     }
   }
 }
 </script>
+
+<style lang="sass">
+
+</style>

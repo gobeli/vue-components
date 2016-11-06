@@ -1,31 +1,29 @@
 <template lang="html">
-  <div class="autocomplete">
-    <input type="text" name="search" class="item search"
+  <div class="btn-group">
+    <input type="text" name="search" class="form-control"
       v-model="search"
       @keyup.up.prevent="search_keyup(false)"
       @keyup.down.prevent="search_keyup(true)"
-      @keyup.enter="search_enter()"
-      v-bind:style="{width: autocomplete.width}" />
-    <ul class="items" v-show="search.length > 0 && !autocomplete.selected"  v-bind:style="{width: autocomplete.width}">
+      @keyup.enter="search_enter()" />
+    <div class="dropdown-menu" v-show="search.length > 0 && !autocomplete.selected"  v-bind:style="{maxHeight: this.dropdownHeight}">
       <slot></slot>
-    </ul>
+    </div>
   </div>
 </template>
 
 <script>
-require('../shared-styles.scss')
 /**
   * @desc Describes props of the autocomplete
 */
 class Autocomplete {
   /**
     * @param String name - Name of the control
-    * @param Array items - Items which will act as suggestions
-    * @param string width - Width of the control
+    * @param String selected - Default text / selected Item
+    * @param Number displayedItems - Number of items shown when the dropdown is opened
   */
-  constructor(name, width, selected) {
+  constructor(name, displayedItems, selected) {
     this.name = name
-    this.width = width
+    this.displayedItems = displayedItems
     this.selected = selected
     this.focused = selected
   }
@@ -34,7 +32,7 @@ class Autocomplete {
 export default {
   uiClass: Autocomplete,
   name: "autocomplete",
-  data () {
+  data(){
     return {
       search: "",
       autocompleteItems: []
@@ -46,12 +44,18 @@ export default {
   computed: {
     filteredItems(){
       return this.autocompleteItems.filter(i => i.text.toLowerCase().includes(this.search.toLowerCase()))
+    },
+    dropdownHeight(){
+      const i = this.autocomplete.displayedItems
+      return `calc(1.5rem*${i} + 6px*${i} + 1rem)`
     }
   },
   mounted () {
-    for (let c in this.$children) {
-      this.autocompleteItems.push(this.$children[c].autocompleteItem)
-    }
+    this.autocompleteItems = this.$children.map(c => c.autocompleteItem)
+
+    this.$on('selected-changed', selected => {
+      this.select(selected)
+    })
   },
   methods: {
     search_keyup(next){
@@ -87,10 +91,12 @@ export default {
 </script>
 
 <style lang="sass">
-  .search{
-    border-top:1px solid #EEE;
-    &:focus{
-      outline: none;
-    }
+  .dropdown-menu{
+    display: block;
+    overflow-y: auto;
+    width: 100%;
+  }
+  mark{
+    padding: 0;
   }
 </style>
