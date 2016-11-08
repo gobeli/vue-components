@@ -15,7 +15,7 @@
       <tr v-if="grid.allowSearch">
         <th v-for="col in grid.columns">
           <input type="text" class="form-control" v-model="col.search">
-        <th>
+        </th>
       </tr>
     </thead>
     <tbody>

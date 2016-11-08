@@ -17,12 +17,10 @@
 */
 class Autocomplete {
   /**
-    * @param String name - Name of the control
-    * @param String selected - Default text / selected Item
     * @param Number displayedItems - Number of items shown when the dropdown is opened
+    * @param String selected - Default text / selected Item
   */
-  constructor(name, displayedItems, selected) {
-    this.name = name
+  constructor(displayedItems, selected) {
     this.displayedItems = displayedItems
     this.selected = selected
     this.focused = selected
@@ -31,10 +29,10 @@ class Autocomplete {
 
 export default {
   uiClass: Autocomplete,
-  name: "autocomplete",
+  name: 'autocomplete',
   data(){
     return {
-      search: "",
+      search: '',
       autocompleteItems: []
     }
   },
@@ -47,7 +45,7 @@ export default {
     },
     dropdownHeight(){
       const i = this.autocomplete.displayedItems
-      return `calc(1.5rem*${i} + 6px*${i} + 1rem)`
+      return `calc(1.5rem*${i} + 1rem + 6px*${i})`
     }
   },
   mounted () {

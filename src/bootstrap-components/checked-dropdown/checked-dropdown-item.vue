@@ -17,7 +17,7 @@ export default {
   name: "checked-dropdown-item",
   data() {
     return {
-      checkbox: new uiCheckbox.uiClass(`chk${this.value}`, false, this.text, "cross", "1rem")
+      checkbox: new uiCheckbox.uiClass(false, this.text, "cross", "1rem")
     }
   },
   props: {
@@ -44,6 +44,3 @@ export default {
   }
 }
 </script>
-<style lang="sass">
-
-</style>

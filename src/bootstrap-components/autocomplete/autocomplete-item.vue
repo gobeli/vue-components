@@ -23,10 +23,10 @@ export default {
   },
   computed: {
     highlightedText() {
-      const re = new RegExp((this.$parent.search),"i")
+      const re = new RegExp((this.$parent.search),'i')
       const matches = this.text.match(re)
       if (matches == null) return this.text
-      return this.text.replace(re,`<mark>${matches[0]}</mark>`).replace(" ", "&nbsp;")
+      return this.text.replace(re,`<mark>${matches[0]}</mark>`).replace(' ', '&nbsp;')
     },
     autocompleteItem() {
       return new AutocompleteItem(this.value,this.text)
@@ -39,7 +39,8 @@ export default {
   }
 }
 </script>
-
 <style lang="sass">
-
+  .dropdown-item>mark{
+    padding: 0;
+  }
 </style>

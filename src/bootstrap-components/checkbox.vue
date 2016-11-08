@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import EventHub from '../helpers/eventHub'
 
 /**
   * @desc Describes props of the checkbox
@@ -25,8 +24,7 @@ class Checkbox {
     * @param string text - Text which will be displayed
     * @param string type - Type of the checkbox ('cross' or 'tick')
   */
-  constructor(name,checked,text,type,size) {
-    this.name = name
+  constructor(checked,text,type,size) {
     this.checked = checked
     this.text = text
     this.type = type
