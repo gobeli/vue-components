@@ -19,14 +19,14 @@ class Dropdown{
     * @param Number displayedItems - Number of items shown when the dropdown is opened
   */
   constructor(name, selected, displayedItems) {
-    this.name = name
-    this.selected = null
-    this.displayedItems = displayedItems
+    this.name = name;
+    this.selected = null;
+    this.displayedItems = displayedItems;
   }
 }
 
 export default {
-  uiClass: Dropdown,
+  Dropdown,
   name: "ui-dropdown",
   mixins: [ clickaway ],
   data() {
@@ -40,22 +40,22 @@ export default {
   },
   computed: {
     dropdownHeight(){
-      const i = this.dropdown.displayedItems
-      return `calc(1.5rem*${i} + 6px*${i} + 1rem)`
+      const i = this.dropdown.displayedItems;
+      return `calc(1.5rem*${i} + 6px*${i} + 1rem)`;
     }
   },
   methods: {
     toggle() {
-      this.isClosed = !this.isClosed
+      this.isClosed = !this.isClosed;
     },
     close(){
-      if (!this.isClosed) this.toggle()
+      if (!this.isClosed) this.toggle();
     }
   },
   mounted(){
     this.$on('selected-changed', selected => {
-      this.dropdown.selected = selected
-      this.toggle()
+      this.dropdown.selected = selected;
+      this.toggle();
     })
   }
 }

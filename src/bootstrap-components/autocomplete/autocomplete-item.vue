@@ -9,13 +9,13 @@
 <script>
 class AutocompleteItem {
   constructor(value,text) {
-    this.value = value
-    this.text = text
+    this.value = value;
+    this.text = text;
   }
 }
 
 export default {
-  uiClass: AutocompleteItem,
+  AutocompleteItem,
   name: "autocomplete-item",
   props: {
     value: String,
@@ -23,23 +23,19 @@ export default {
   },
   computed: {
     highlightedText() {
-      const re = new RegExp((this.$parent.search),"i")
-      const matches = this.text.match(re)
-      if (matches == null) return this.text
-      return this.text.replace(re,`<mark>${matches[0]}</mark>`).replace(" ", "&nbsp;")
+      const re = new RegExp((this.$parent.search),'i');
+      const matches = this.text.match(re);
+      if (matches == null) return this.text;
+      return this.text.replace(re,`<mark>${matches[0]}</mark>`).replace(' ', '&nbsp;');
     },
     autocompleteItem() {
-      return new AutocompleteItem(this.value,this.text)
+      return new AutocompleteItem(this.value,this.text);
     }
   },
   methods: {
     select(){
-      this.$parent.$emit('selected-changed',this.autocompleteItem)
+      this.$parent.$emit('selected-changed',this.autocompleteItem);
     }
   }
 }
 </script>
-
-<style lang="sass">
-
-</style>

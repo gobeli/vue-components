@@ -1,0 +1,8 @@
+{
+  "extends":[ "vue","airbnb-base/legacy"],
+  "modules": true,
+  "rules": {
+      "linebreak-style": "off",
+      "no-new": "off"
+  }
+}

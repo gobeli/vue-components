@@ -10,18 +10,18 @@
 </template>
 
 <script>
-import { mixin as clickaway } from 'vue-clickaway'
+import { mixin as clickaway } from 'vue-clickaway';
 
 class CheckedDropdown {
   constructor(name, displayedItems, ...selectedItems) {
-    this.name = name
-    this.displayedItems = displayedItems
-    this.selectedItems = selectedItems
+    this.name = name;
+    this.displayedItems = displayedItems;
+    this.selectedItems = selectedItems;
   }
 }
 
 export default {
-  uiClass: CheckedDropdown,
+  CheckedDropdown,
   name: "ui-checked-dropdown",
   mixins: [ clickaway ],
   data() {
@@ -36,26 +36,26 @@ export default {
   },
   computed: {
     selectedString() {
-      let s = this.checkedDropdown.selectedItems.map(item => item.text).join(', ')
-      return s == "" ? this.placeholder : s
+      let s = this.checkedDropdown.selectedItems.map(item => item.text).join(', ');
+      return s == "" ? this.placeholder : s;
     },
     dropdownHeight(){
-      const i = this.checkedDropdown.displayedItems
-      return `calc(1.5rem*${i} + 6px*${i} + 1rem)`
+      const i = this.checkedDropdown.displayedItems;
+      return `calc(1.5rem*${i} + 6px*${i} + 1rem)`;
     }
   },
   methods: {
     toggle(){
-      this.isClosed = !this.isClosed
+      this.isClosed = !this.isClosed;
     },
     close(){
-      if (!this.isClosed) this.toggle()
+      if (!this.isClosed) this.toggle();
     }
   },
   mounted(){
     this.$on('selected-changed', () => {
-      this.checkedDropdown.selectedItems = this.$children.filter(c => c.checkbox.checked).map(c => c.checkedDropdownItem)
-    })
+      this.checkedDropdown.selectedItems = this.$children.filter(c => c.checkbox.checked).map(c => c.checkedDropdownItem);
+    });
   }
 }
 </script>

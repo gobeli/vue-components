@@ -19,12 +19,12 @@ export default {
   },
   computed: {
     show(){
-      return this.$parent.radiobuttonGroup.selectedName && this.name == this.$parent.radiobuttonGroup.selectedName
+      return this.$parent.radiobuttonGroup.selectedName && this.name == this.$parent.radiobuttonGroup.selectedName;
     }
   },
   methods: {
     select(){
-      this.$parent.radiobuttonGroup.selectedName = this.name
+      this.$parent.radiobuttonGroup.selectedName = this.name;
     }
   }
 }

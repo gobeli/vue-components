@@ -14,13 +14,13 @@ class RadiobuttonGroup {
     * @param String selected - name of the selected radiobutton
   */
   constructor(name, selectedName) {
-    this.name = name
-    this.selectedName = selectedName
+    this.name = name;
+    this.selectedName = selectedName;
   }
 }
 
 export default {
-  uiClass: RadiobuttonGroup,
+  RadiobuttonGroup,
   name: 'ui-radiobutton-group',
   props: {
     radiobuttonGroup: RadiobuttonGroup
@@ -32,7 +32,7 @@ export default {
   },
   mounted(){
     for(let i in this.$children){
-      this.radiobuttons.push(this.$children[i].name)
+      this.radiobuttons.push(this.$children[i].name);
     }
   }
 }
