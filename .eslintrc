@@ -3,6 +3,7 @@
   "modules": true,
   "rules": {
       "linebreak-style": "off",
-      "no-new": "off"
+      "no-new": "off",
+      "no-console": "off"
   }
 }

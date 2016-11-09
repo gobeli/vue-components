@@ -7,7 +7,7 @@
 
 <script>
 class DropdownItem {
-  constructor(value,text) {
+  constructor(value, text) {
     this.value = value;
     this.text = text;
   }
@@ -15,8 +15,8 @@ class DropdownItem {
 
 export default {
   DropdownItem,
-  name: "ui-dropdown-item",
-  props:{
+  name: 'ui-dropdown-item',
+  props: {
     value: String,
     text: String
   },
@@ -30,5 +30,5 @@ export default {
       this.$parent.$emit('selected-changed', this.dropdownItem);
     }
   }
-}
+};
 </script>

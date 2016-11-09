@@ -8,7 +8,7 @@
 
 <script>
 class AutocompleteItem {
-  constructor(value,text) {
+  constructor(value, text) {
     this.value = value;
     this.text = text;
   }
@@ -16,41 +16,31 @@ class AutocompleteItem {
 
 export default {
   AutocompleteItem,
-  name: "autocomplete-item",
+  name: 'autocomplete-item',
   props: {
     value: String,
     text: String
   },
   computed: {
     highlightedText() {
-<<<<<<< HEAD
-      const re = new RegExp((this.$parent.search),'i')
-      const matches = this.text.match(re)
-      if (matches == null) return this.text
-      return this.text.replace(re,`<mark>${matches[0]}</mark>`).replace(' ', '&nbsp;')
-=======
-      const re = new RegExp((this.$parent.search),'i');
+      const re = new RegExp((this.$parent.search), 'i');
       const matches = this.text.match(re);
       if (matches == null) return this.text;
-      return this.text.replace(re,`<mark>${matches[0]}</mark>`).replace(' ', '&nbsp;');
->>>>>>> refs/remotes/origin/features/bootstrap
+      return this.text.replace(re, `<mark>${matches[0]}</mark>`).replace(' ', '&nbsp;');
     },
     autocompleteItem() {
-      return new AutocompleteItem(this.value,this.text);
+      return new AutocompleteItem(this.value, this.text);
     }
   },
   methods: {
-    select(){
-      this.$parent.$emit('selected-changed',this.autocompleteItem);
+    select() {
+      this.$parent.$emit('selected-changed', this.autocompleteItem);
     }
   }
-}
+};
 </script>
-<<<<<<< HEAD
 <style lang="sass">
   .dropdown-item>mark{
     padding: 0;
   }
 </style>
-=======
->>>>>>> refs/remotes/origin/features/bootstrap
