@@ -15,12 +15,12 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel',
+        loaders: ['babel', 'eslint-loader'],
         exclude: /node_modules/
       },
       {
         test: /\.vue$/,
-        loader: 'vue'
+        loader: 'vue!eslint'
       },
       {
         test:  /\.scss$/,

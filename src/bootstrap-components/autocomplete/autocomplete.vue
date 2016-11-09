@@ -20,16 +20,29 @@ class Autocomplete {
     * @param Number displayedItems - Number of items shown when the dropdown is opened
     * @param String selected - Default text / selected Item
   */
+<<<<<<< HEAD
   constructor(displayedItems, selected) {
     this.displayedItems = displayedItems
     this.selected = selected
     this.focused = selected
+=======
+  constructor(name, displayedItems, selected) {
+    this.name = name;
+    this.displayedItems = displayedItems;
+    this.selected = selected;
+    this.focused = selected;
+>>>>>>> refs/remotes/origin/features/bootstrap
   }
 }
 
 export default {
+<<<<<<< HEAD
   uiClass: Autocomplete,
   name: 'autocomplete',
+=======
+  Autocomplete,
+  name: "autocomplete",
+>>>>>>> refs/remotes/origin/features/bootstrap
   data(){
     return {
       search: '',
@@ -41,48 +54,53 @@ export default {
   },
   computed: {
     filteredItems(){
-      return this.autocompleteItems.filter(i => i.text.toLowerCase().includes(this.search.toLowerCase()))
+      return this.autocompleteItems.filter(i => i.text.toLowerCase().includes(this.search.toLowerCase()));
     },
     dropdownHeight(){
+<<<<<<< HEAD
       const i = this.autocomplete.displayedItems
       return `calc(1.5rem*${i} + 1rem + 6px*${i})`
+=======
+      const i = this.autocomplete.displayedItems;
+      return `calc(1.5rem*${i} + 6px*${i} + 1rem)`;
+>>>>>>> refs/remotes/origin/features/bootstrap
     }
   },
   mounted () {
-    this.autocompleteItems = this.$children.map(c => c.autocompleteItem)
+    this.autocompleteItems = this.$children.map(c => c.autocompleteItem);
 
     this.$on('selected-changed', selected => {
       this.select(selected)
-    })
+    });
   },
   methods: {
     search_keyup(next){
-      let item = this.autocomplete.focused
-      let i = 0
+      let item = this.autocomplete.focused;
+      let i = 0;
       if (item != null && this.filteredItems != null) {
-        i = this.filteredItems.indexOf(item)
-        i = next ? i+1 : i-1
+        i = this.filteredItems.indexOf(item);
+        i = next ? i+1 : i-1;
       }
-      let newItem = this.filteredItems[i]
+      let newItem = this.filteredItems[i];
       if (newItem !== undefined){
-        this.autocomplete.focused = newItem
+        this.autocomplete.focused = newItem;
       }
     },
     search_enter(){
-      if (!this.autocomplete.focused) return
-      this.select(this.autocomplete.focused)
+      if (!this.autocomplete.focused) return;
+      this.select(this.autocomplete.focused);
     },
     select(item){
-      this.autocomplete.selected = item
-      if (item) this.search = item.text
+      this.autocomplete.selected = item;
+      if (item) this.search = item.text;
     }
   },
   watch: {
     search(){
-      this.autocomplete.focused = null
-      const filtered = this.autocompleteItems.filter(i => i.text == this.search)
-      if (filtered.length > 0) this.select(filtered[0])
-      else this.select(null)
+      this.autocomplete.focused = null;
+      const filtered = this.autocompleteItems.filter(i => i.text == this.search);
+      if (filtered.length > 0) this.select(filtered[0]);
+      else this.select(null);
     }
   }
 }

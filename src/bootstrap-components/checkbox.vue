@@ -13,7 +13,10 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/features/bootstrap
 /**
   * @desc Describes props of the checkbox
 */
@@ -24,36 +27,45 @@ class Checkbox {
     * @param string text - Text which will be displayed
     * @param string type - Type of the checkbox ('cross' or 'tick')
   */
+<<<<<<< HEAD
   constructor(checked,text,type,size) {
     this.checked = checked
     this.text = text
     this.type = type
     this.size = size
+=======
+  constructor(name,checked,text,type,size) {
+    this.name = name;
+    this.checked = checked;
+    this.text = text;
+    this.type = type;
+    this.size = size;
+>>>>>>> refs/remotes/origin/features/bootstrap
   }
 }
 
 export default {
-  uiClass: Checkbox,
+  Checkbox,
   name: 'ui-checkbox',
   props:{
     checkbox: Checkbox
   },
   computed: {
       showCross(){
-        return this.checkbox.type == 'cross' && this.checkbox.checked
+        return this.checkbox.type == 'cross' && this.checkbox.checked;
       },
       showTick(){
-        return this.checkbox.type == 'tick' && this.checkbox.checked
+        return this.checkbox.type == 'tick' && this.checkbox.checked;
       }
   },
   methods: {
     toggle(){
-      this.checkbox.checked = !this.checkbox.checked
+      this.checkbox.checked = !this.checkbox.checked;
     }
   },
   mounted(){
     if (this.checkbox.type != 'cross' && this.checkbox.type != 'tick') {
-      console.error('The checkbox type has to be either \'cross\' or \'tick\'!')
+      console.error('The checkbox type has to be either \'cross\' or \'tick\'!');
     }
   }
 }

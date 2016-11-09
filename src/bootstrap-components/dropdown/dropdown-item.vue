@@ -8,13 +8,13 @@
 <script>
 class DropdownItem {
   constructor(value,text) {
-    this.value = value
-    this.text = text
+    this.value = value;
+    this.text = text;
   }
 }
 
 export default {
-  uiClass: DropdownItem,
+  DropdownItem,
   name: "ui-dropdown-item",
   props:{
     value: String,
@@ -22,12 +22,12 @@ export default {
   },
   computed: {
     dropdownItem() {
-      return new DropdownItem(this.value, this.text)
+      return new DropdownItem(this.value, this.text);
     }
   },
   methods: {
     select() {
-      this.$parent.$emit('selected-changed', this.dropdownItem)
+      this.$parent.$emit('selected-changed', this.dropdownItem);
     }
   }
 }

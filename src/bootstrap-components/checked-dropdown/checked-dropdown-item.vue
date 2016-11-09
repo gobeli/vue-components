@@ -5,19 +5,23 @@
 </template>
 
 <script>
-import uiCheckbox from '../checkbox.vue'
+import UiCheckbox from '../checkbox.vue';
 
 class CheckedDropdownItem {
   constructor(value,text) {
-    this.value = value
-    this.text = text
+    this.value = value;
+    this.text = text;
   }
 }
 export default {
   name: "checked-dropdown-item",
   data() {
     return {
+<<<<<<< HEAD
       checkbox: new uiCheckbox.uiClass(false, this.text, "cross", "1rem")
+=======
+      checkbox: new UiCheckbox.Checkbox(`chk${this.value}`, false, this.text, "cross", "1rem")
+>>>>>>> refs/remotes/origin/features/bootstrap
     }
   },
   props: {
@@ -26,7 +30,7 @@ export default {
   },
   computed: {
     checkedDropdownItem() {
-      return new CheckedDropdownItem(this.value, this.text)
+      return new CheckedDropdownItem(this.value, this.text);
     }
   },
   methods: {
@@ -36,11 +40,11 @@ export default {
   },
   mounted(){
     this.$watch('checkbox.checked', (n,o) => {
-      this.$parent.$emit('selected-changed')
+      this.$parent.$emit('selected-changed');
     })
   },
   components: {
-    UiCheckbox: uiCheckbox
+    UiCheckbox
   }
 }
 </script>
