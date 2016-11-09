@@ -23,17 +23,10 @@ export default {
   },
   computed: {
     highlightedText() {
-<<<<<<< HEAD
-      const re = new RegExp((this.$parent.search),'i')
-      const matches = this.text.match(re)
-      if (matches == null) return this.text
-      return this.text.replace(re,`<mark>${matches[0]}</mark>`).replace(' ', '&nbsp;')
-=======
       const re = new RegExp((this.$parent.search),'i');
       const matches = this.text.match(re);
       if (matches == null) return this.text;
       return this.text.replace(re,`<mark>${matches[0]}</mark>`).replace(' ', '&nbsp;');
->>>>>>> refs/remotes/origin/features/bootstrap
     },
     autocompleteItem() {
       return new AutocompleteItem(this.value,this.text);
@@ -46,11 +39,8 @@ export default {
   }
 }
 </script>
-<<<<<<< HEAD
 <style lang="sass">
   .dropdown-item>mark{
     padding: 0;
   }
 </style>
-=======
->>>>>>> refs/remotes/origin/features/bootstrap

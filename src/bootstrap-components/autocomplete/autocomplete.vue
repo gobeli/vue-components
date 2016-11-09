@@ -20,29 +20,17 @@ class Autocomplete {
     * @param Number displayedItems - Number of items shown when the dropdown is opened
     * @param String selected - Default text / selected Item
   */
-<<<<<<< HEAD
-  constructor(displayedItems, selected) {
-    this.displayedItems = displayedItems
-    this.selected = selected
-    this.focused = selected
-=======
   constructor(name, displayedItems, selected) {
     this.name = name;
     this.displayedItems = displayedItems;
     this.selected = selected;
     this.focused = selected;
->>>>>>> refs/remotes/origin/features/bootstrap
   }
 }
 
 export default {
-<<<<<<< HEAD
-  uiClass: Autocomplete,
-  name: 'autocomplete',
-=======
   Autocomplete,
   name: "autocomplete",
->>>>>>> refs/remotes/origin/features/bootstrap
   data(){
     return {
       search: '',
@@ -57,13 +45,8 @@ export default {
       return this.autocompleteItems.filter(i => i.text.toLowerCase().includes(this.search.toLowerCase()));
     },
     dropdownHeight(){
-<<<<<<< HEAD
-      const i = this.autocomplete.displayedItems
-      return `calc(1.5rem*${i} + 1rem + 6px*${i})`
-=======
       const i = this.autocomplete.displayedItems;
       return `calc(1.5rem*${i} + 6px*${i} + 1rem)`;
->>>>>>> refs/remotes/origin/features/bootstrap
     }
   },
   mounted () {
