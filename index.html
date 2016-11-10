@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Vue Example</title>
+  </head>
+  <body>
     <style media="screen">
       .highlight{
         padding: .5rem;
@@ -18,45 +20,28 @@
       .table-container>.table{
         min-width: 400px;
       }
-      .navigation{
-        background-color: #FFF;
+      .menu{
+        background-color: #f7f7f9;
+        position: fixed;
+        height: 100%;
+        z-index: 1;
       }
-      @media (max-width: 540px) {
-        .navigation{
-          display: none;
-        }
+      .menu, .content{
+        padding-top: calc(2em + 2rem);
       }
     </style>
-    <!--<style media="screen">
-      *{
-        font-family: sans-serif;
-      }
-      body{
-        margin: 0;
-      }
-      #app{
-        padding: 1rem;
-      }
-      pre{
-        padding: .75rem;
-        margin-top: 5px;
-        box-sizing: border-box;
-        background-color: #EEE;
-        border: 1px solid #333;
-        color: #333;
-      }
-    </style>-->
-  </head>
-  <body>
     <div id="app">
+      <nav class="navbar navbar-fixed-top navbar-light bg-faded">
+        <button class="navbar-toggler" @click="toggleNav(true)" type="button"></button>
+      </nav>
       <div class="row" style="margin-left: auto; margin-right: auto;">
-        <div class="col-xs-4 navigation">
+        <div class="col-xs-4 menu" v-show="navOpen">
           <ul class="nav">
             <li class="nav-item"><a href="#autocomplete">Autocomplete</a></li>
             <li class="nav-item"><a href="#checkbox">Checkbox</a></li>
           </ul>
         </div>
-        <div class="col-xs-12">
+        <div class="col-xs-12 content" @click="toggleNav">
           <div id="autocomplete"> <!-- Autocomplete -->
             <h2>Autocomplete</h2>
             <ui-autocomplete class="demo" style="min-width: 300px" :autocomplete="autocomplete">

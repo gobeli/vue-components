@@ -12,23 +12,21 @@
 
 <script>
 export default {
-  name: "ui-radiobutton",
+  name: 'ui-radiobutton',
   props: {
     name: String,
     size: String
   },
   computed: {
-    show(){
-      return this.$parent.radiobuttonGroup.selectedName && this.name == this.$parent.radiobuttonGroup.selectedName;
+    show() {
+      return this.$parent.radiobuttonGroup.selectedName
+        && this.name === this.$parent.radiobuttonGroup.selectedName;
     }
   },
   methods: {
-    select(){
+    select() {
       this.$parent.radiobuttonGroup.selectedName = this.name;
     }
   }
-}
+};
 </script>
-
-<style lang="css">
-</style>

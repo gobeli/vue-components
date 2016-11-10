@@ -2,7 +2,7 @@
   <table class="table table-hover">
     <thead class="thead-default">
       <tr>
-        <th v-for="col in grid.columns" @click="cellHead_dbClick(col)">
+        <th v-for="col in grid.columns" @click="col.sorting = cellHead_dbClick(col)">
           <div>
             <span>{{col.caption}}</span>
             <svg height="1.33rem" fill="#373a3c" viewBox="0 0 12 16" version="1.1" width="1rem">
@@ -35,12 +35,12 @@
 class Column {
   constructor(key, caption = '', allowEdit = false, allowSorting = true, sorting = '') {
     this.key = key;
-    //if there is a caption else use the key as caption
+    // if there is a caption else use the key as caption
     this.caption = caption.length > 0 ? caption : key;
     this.allowEdit = allowEdit;
     this.allowSorting = allowSorting;
     this.sorting = sorting;
-    this.search = "";
+    this.search = '';
   }
 
 
@@ -48,7 +48,7 @@ class Column {
     * @desc Set the caption of the Column
     * @param {String} caption
   */
-  setCaption(caption){
+  setCaption(caption) {
     this.caption = caption;
     return this;
   }
@@ -78,13 +78,13 @@ class Column {
 class Grid {
   constructor(data, allowSelect, allowSearch) {
     this.data = data;
-    this.columns = new Array();
+    this.columns = [];
     this.allowSelect = allowSelect;
     this.allowSearch = allowSearch;
   }
 
   addColumn(key, callBack) {
-    var c = new Column(key,"",false,"");
+    var c = new Column(key, '', false, '');
     this.columns.push(c);
     callBack(c);
     return this;
@@ -93,70 +93,72 @@ class Grid {
 
 export default {
   Grid,
-  name: "ui-grid",
+  name: 'ui-grid',
   data() {
     return {
       selectedRow: null,
       editingCol: null,
       editingRow: null
-    }
+    };
   },
   props: {
     grid: Grid
   },
   methods: {
-    cellHead_dbClick(item){
-      if (!item.sorting) {
-        item.sorting = "asc";
-      } else if (item.sorting == "asc") {
-        item.sorting = "desc";
-      } else if (item.sorting == "desc") {
-        item.sorting = "asc";
+    cellHead_dbClick(col) {
+      if (!col.sorting) {
+        return 'asc';
+      } else if (col.sorting === 'asc') {
+        return 'desc';
+      } else if (col.sorting === 'desc') {
+        return 'asc';
       }
+      return '';
     },
-    cell_dbClick(col,row) {
+    cell_dbClick(col, row) {
       if (!col.allowEdit) return;
       this.editingCol = col;
       this.editingRow = row;
     }
   },
   computed: {
-    sortedData(){
+    sortedData() {
       let data = this.grid.data;
-      for (let col of this.grid.columns) {
-        if (col.search){
+      for (let i = 0; i < this.grid.columns.length; i += 1) {
+        const col = this.grid.columns[i];
+        if (col.search) {
           data = data.filter(d => {
-            let x = d[col.key];
-            if (isNaN(x)){
+            const x = d[col.key];
+            if (isNaN(x)) {
               return x.toLowerCase().includes(col.search.toLowerCase());
-            } else {
-              return x == col.search;
             }
-          })
+            return x === col.search;
+          });
         }
 
-        if (!col.sorting) continue
-        data = data.sort((a,b) => {
-          let x = a[col.key];
-          let y = b[col.key];
-          let asc = col.sorting == "asc";
-          let desc = col.sorting == "desc";
-          if (isNaN(x) && isNaN(y)){
-            x = x.toLowerCase();
-            y = y.toLowerCase();
-          }
-          if ((x < y && asc) || (x > y && desc)) {
-            return -1;
-          } else if ((x > y && asc) || (x < y && desc)) {
-            return 1;
-          }
-          return 0;
-        });
+        if (col.sorting) {
+          data = data.sort((a, b) => {
+            let x = a[col.key];
+            let y = b[col.key];
+            const asc = col.sorting === 'asc';
+            const desc = col.sorting === 'desc';
+            if (isNaN(x) && isNaN(y)) {
+              x = x.toLowerCase();
+              y = y.toLowerCase();
+            }
+            if ((x < y && asc) || (x > y && desc)) {
+              return -1;
+            } else if ((x > y && asc) || (x < y && desc)) {
+              return 1;
+            }
+            return 0;
+          });
+        }
       }
       return data;
     }
-  },
-}
+  }
+};
 </script>
 
 <style lang="sass">

@@ -8,21 +8,17 @@
 import UiCheckbox from '../checkbox.vue';
 
 class CheckedDropdownItem {
-  constructor(value,text) {
+  constructor(value, text) {
     this.value = value;
     this.text = text;
   }
 }
 export default {
-  name: "checked-dropdown-item",
+  name: 'checked-dropdown-item',
   data() {
     return {
-<<<<<<< HEAD
-      checkbox: new uiCheckbox.uiClass(false, this.text, "cross", "1rem")
-=======
-      checkbox: new UiCheckbox.Checkbox(`chk${this.value}`, false, this.text, "cross", "1rem")
->>>>>>> refs/remotes/origin/features/bootstrap
-    }
+      checkbox: new UiCheckbox.Checkbox(false, this.text, 'cross', '1rem')
+    };
   },
   props: {
     value: String,
@@ -38,13 +34,13 @@ export default {
       this.isClosed = !this.isClosed;
     }
   },
-  mounted(){
-    this.$watch('checkbox.checked', (n,o) => {
+  mounted() {
+    this.$watch('checkbox.checked', () => {
       this.$parent.$emit('selected-changed');
-    })
+    });
   },
   components: {
     UiCheckbox
   }
-}
+};
 </script>

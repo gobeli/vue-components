@@ -25,17 +25,15 @@ export default {
   props: {
     radiobuttonGroup: RadiobuttonGroup
   },
-  data(){
+  data() {
     return {
       radiobuttons: []
-    }
+    };
   },
-  mounted(){
-    for(let i in this.$children){
-      this.radiobuttons.push(this.$children[i].name);
-    }
+  mounted() {
+    this.radiobuttons = this.$children.map(c => c.name);
   }
-}
+};
 </script>
 <style lang="sass">
   .radiobutton{

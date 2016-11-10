@@ -13,8 +13,7 @@
 import { mixin as clickaway } from 'vue-clickaway';
 
 class CheckedDropdown {
-  constructor(name, displayedItems, ...selectedItems) {
-    this.name = name;
+  constructor(displayedItems, ...selectedItems) {
     this.displayedItems = displayedItems;
     this.selectedItems = selectedItems;
   }
@@ -22,13 +21,13 @@ class CheckedDropdown {
 
 export default {
   CheckedDropdown,
-  name: "ui-checked-dropdown",
-  mixins: [ clickaway ],
+  name: 'ui-checked-dropdown',
+  mixins: [clickaway],
   data() {
     return {
       isClosed: true,
-      selectedString: ""
-    }
+      selectedString: ''
+    };
   },
   props: {
     checkedDropdown: CheckedDropdown,
@@ -36,28 +35,29 @@ export default {
   },
   computed: {
     selectedString() {
-      let s = this.checkedDropdown.selectedItems.map(item => item.text).join(', ');
-      return s == "" ? this.placeholder : s;
+      const s = this.checkedDropdown.selectedItems.map(item => item.text).join(', ');
+      return s === '' ? this.placeholder : s;
     },
-    dropdownHeight(){
+    dropdownHeight() {
       const i = this.checkedDropdown.displayedItems;
       return `calc(1.5rem*${i} + 6px*${i} + 1rem)`;
     }
   },
   methods: {
-    toggle(){
+    toggle() {
       this.isClosed = !this.isClosed;
     },
-    close(){
+    close() {
       if (!this.isClosed) this.toggle();
     }
   },
-  mounted(){
+  mounted() {
     this.$on('selected-changed', () => {
-      this.checkedDropdown.selectedItems = this.$children.filter(c => c.checkbox.checked).map(c => c.checkedDropdownItem);
+      this.checkedDropdown.selectedItems =
+        this.$children.filter(c => c.checkbox.checked).map(c => c.checkedDropdownItem);
     });
   }
-}
+};
 </script>
 <style lang="sass">
 .btn-group{

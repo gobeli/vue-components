@@ -10,16 +10,16 @@
 </template>
 
 <script>
-import { mixin as clickaway } from 'vue-clickaway'
+import { mixin as clickaway } from 'vue-clickaway';
 
-class Dropdown{
+class Dropdown {
   /**
     * @param String name - Name of the control
-    * @param DropdownItem selected - Default selected Item / pass null if you want the placeholder to show
+    * @param DropdownItem selected - Default selected Item / p
+                                     pass null if you want the placeholder to show
     * @param Number displayedItems - Number of items shown when the dropdown is opened
   */
-  constructor(name, selected, displayedItems) {
-    this.name = name;
+  constructor(selected, displayedItems) {
     this.selected = null;
     this.displayedItems = displayedItems;
   }
@@ -27,19 +27,19 @@ class Dropdown{
 
 export default {
   Dropdown,
-  name: "ui-dropdown",
-  mixins: [ clickaway ],
+  name: 'ui-dropdown',
+  mixins: [clickaway],
   data() {
     return {
       isClosed: true
-    }
+    };
   },
-  props:{
+  props: {
     dropdown: Dropdown,
     placeholder: String
   },
   computed: {
-    dropdownHeight(){
+    dropdownHeight() {
       const i = this.dropdown.displayedItems;
       return `calc(1.5rem*${i} + 6px*${i} + 1rem)`;
     }
@@ -48,17 +48,17 @@ export default {
     toggle() {
       this.isClosed = !this.isClosed;
     },
-    close(){
+    close() {
       if (!this.isClosed) this.toggle();
     }
   },
-  mounted(){
+  mounted() {
     this.$on('selected-changed', selected => {
       this.dropdown.selected = selected;
       this.toggle();
-    })
+    });
   }
-}
+};
 </script>
 
 <style lang="sass">
