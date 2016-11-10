@@ -21,7 +21,7 @@
     <tbody>
       <tr v-for="row in sortedData" @click="selectedRow = row" :class="{'table-info': selectedRow == row && grid.allowSelect}">
         <td v-for="col in grid.columns" v-on:dblclick="cell_dbClick(col,row)">
-          <span v-if="editingCol != col || editingRow != row || selectedRow != row">{{row[col.key]}}</span>
+          <span  v-if="editingCol != col || editingRow != row || selectedRow != row">{{row[col.key]}}</span>
           <input v-if="editingCol == col && editingRow == row && selectedRow == row" v-model="row[col.key]"
             @keyup.enter="editingCol = null; editingRow = null"
             class="form-control"></input>
@@ -162,14 +162,19 @@ export default {
 </script>
 
 <style lang="sass">
-  .table th{
-    >div{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+  .table{
+    th{
+      >div{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      input{
+        font-weight: normal;
+      }
     }
-    input{
-      font-weight: normal;
+    td>input {
+      padding: .25rem;
     }
   }
   .hide{

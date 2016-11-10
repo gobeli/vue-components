@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Vue Example</title>
+    <link rel="stylesheet" href="/dist/styles.css">
+  </head>
+  <body>
+    <div id="app">
+      <nav class="navbar navbar-fixed-top navbar-light bg-faded">
+        <button class="navbar-toggler" @click="toggleNav(true)" type="button"></button>
+      </nav>
+      <div class="row" style="margin-left: auto; margin-right: auto;">
+        <transition name="left-to-right">
+          <div class="col-xs-8 col-md-5 col-lg-3 menu" v-show="navOpen">
+            <ul class="nav">
+              <li><h4>Components</h4></li>
+              <li class="nav-item"><a href="#autocomplete">Autocomplete</a></li>
+              <li class="nav-item"><a href="#checkbox">Checkbox</a></li>
+            </ul>
+          </div>
+        </transition>
+        <div class="content container" @click="toggleNav(false)">
+          <div id="autocomplete"> <!-- Autocomplete -->
+            <h2>Autocomplete</h2>
+            <ui-autocomplete class="demo" style="min-width: 300px" :autocomplete="autocomplete">
+              <ui-autocomplete-item v-for="country in countries" :value="country" :text="country"></ui-autocomplete-item>
+            </ui-autocomplete>
+            <p>selected: <code>{{autocomplete.selected}}</code></p>
+            <h4>Usage</h4>
+          <pre class="highlight">
+const countries = ["Afghanistan","Albania"....]
+const autocomplete = new ui.autocomplete.uiClass(3)
+
+&lt;ui-autocomplete style=&quot;min-width: 300px&quot; :autocomplete=&quot;autocomplete&quot;&gt;
+&lt;ui-autocomplete-item v-for=&quot;country in countries&quot; :value=&quot;country&quot; :text=&quot;country&quot;&gt;&lt;/ui-autocomplete-item&gt;
+&lt;/ui-autocomplete&gt;</pre>
+            <p>The <code>autocomplete</code> component takes an <code>Object</code> of the Type
+            <code>Autocomplete</code> as a parameter. The constructor requires the following paramters:</p>
+            <div class="table-container">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Desciption</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>displayedItems</td>
+                    <td>Number</td>
+                    <td>The number of items displayed when the autocomplete is opened.</td>
+                  </tr>
+                  <tr>
+                    <td>selected</td>
+                    <td>AutocompleteItem</td>
+                    <td>Selected item</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>The <code>autocomplete-item</code> requires the following parameter:</p>
+            <div class="table-container">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Desciption</th>
+                  </tr>
+                </thead>
+                <thead>
+                  <tr>
+                    <td>value</td>
+                    <td>Object</td>
+                    <td>Value of the item i.e. an Id.</td>
+                  </tr>
+                  <tr>
+                    <td>text</td>
+                    <td>String</td>
+                    <td>Text which will be displayed and searched by the user.</td>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div> <!-- /Autocomplete -->
+          <div id="checkbox"><!-- Checkbox -->
+            <h2>Checkbox</h2>
+
+            <ui-checkbox :checkbox="checkbox1"></ui-checkbox>
+            <ui-checkbox :checkbox="checkbox2"></ui-checkbox>
+            <p>
+              Checkbox1: <code>{{checkbox1.checked}}</code><br>
+              Checkbox2: <code>{{checkbox2.checked}}</code>
+            </p>
+            <p>The <code>autocomplete</code> component takes an <code>Object</code> of the Type
+            <code>Autocomplete</code> as a parameter. The constructor requires the following parameters:</p>
+            <div class="table-container">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Desciption</th>
+                  </tr>
+                </thead>
+                <thead>
+                  <tr>
+                    <td>checked</td>
+                    <td>Boolean</td>
+                    <td>Checke state true = checked, false = unchecked</td>
+                  </tr>
+                  <tr>
+                    <td>text</td>
+                    <td>String</td>
+                    <td>Text which will be displayed and searched by the user.</td>
+                  </tr>
+                  <tr>
+                    <td>type</td>
+                    <td>String</td>
+                    <td>The type of the checkbox (either <code>tick</code> or <code>cross</code>)</td>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+
+
+          <h2>Radiobuttons</h2>
+          <ui-radiobutton-group :radiobutton-group="radiobuttonGroup">
+            <ui-radiobutton name="rb1" size="20px">Radiobutton 1</ui-radiobutton>
+            <ui-radiobutton name="rb3" size="20px">Radiobutton 3</ui-radiobutton>
+            <ui-radiobutton name="rb2" size="20px">Radiobutton 2</ui-radiobutton>
+          </ui-radiobutton-group>
+          <pre class="highlight">Selected:
+          {{radiobuttonGroup.selectedName}}</pre>
+
+          <h2>Dropdown</h2>
+          <ui-dropdown style="width: 300px" :dropdown="dropdown" placeholder="Please select">
+            <ui-dropdown-item value="DropdownItem1" text="First"></ui-dropdown-item>
+            <ui-dropdown-item value="DropdownItem2" text="Second"></ui-dropdown-item>
+            <ui-dropdown-item value="DropdownItem3" text="Third"></ui-dropdown-item>
+            <ui-dropdown-item value="DropdownItem4" text="Fourth"></ui-dropdown-item>
+          </ui-dropdown>
+          <pre class="highlight">Selected:
+          {{dropdown.selected}}</pre>
+
+          <h2>Checked Dropdown</h2>
+          <ui-checked-dropdown style="width: 300px" :checked-dropdown="checkedDropdown" placeholder="Please select">
+            <ui-checked-dropdown-item value="cdi1" text="One"></ui-checked-dropdown-item>
+            <ui-checked-dropdown-item value="cdi2" text="Two"></ui-checked-dropdown-item>
+            <ui-checked-dropdown-item value="cdi3" text="Three"></ui-checked-dropdown-item>
+            <ui-checked-dropdown-item value="cdi4" text="Four"></ui-checked-dropdown-item>
+            <ui-checked-dropdown-item value="cdi5" text="Five"></ui-checked-dropdown-item>
+            <ui-checked-dropdown-item value="cdi6" text="Six"></ui-checked-dropdown-item>
+            <ui-checked-dropdown-item value="cdi7" text="Seven"></ui-checked-dropdown-item>
+            <ui-checked-dropdown-item value="cdi8" text="Eight"></ui-checked-dropdown-item>
+          </ui-checked-dropdown>
+          <pre class="highlight">Selected items:
+          {{checkedDropdown.selectedItems}}</pre>
+          <h2>Grid</h2>
+          <ui-grid :grid="grid"></ui-grid>
+        </div>
+      </div>
+
+    </div>
+    <script src="/dist/bundle.js"></script>
+  </body>
+</html>

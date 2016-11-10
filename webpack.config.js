@@ -1,8 +1,11 @@
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+let extractCSS = new ExtractTextPlugin('styles.css');
+
 module.exports = {
-  entry: './src/main.js',
+  entry: './docs/src/main.js',
 
   output: {
-    path: './dist',
+    path: './docs/dist',
     publicPath: "/dist/",
     filename: 'bundle.js'
   },
@@ -15,26 +18,26 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loaders: ['babel', 'eslint-loader'],
+        loader: 'babel!eslint',
         exclude: /node_modules/
       },
       {
         test: /\.vue$/,
-        loader: 'vue!eslint'
+        loader: 'vue'
       },
       {
         test:  /\.scss$/,
-        loader: 'style-loader!css-loader!sass-loader'
+        loader: extractCSS.extract('style-loader', 'css-loader!sass-loader')
       },
       {
         test:  /\.css$/,
-        loader: 'style-loader!css-loader'
+        loader: extractCSS.extract('style-loader', 'css-loader')
       }
     ]
   },
   vue: {
     loaders: {
-      js: 'babel',
+      js: 'babel!eslint',
       scss: 'style-loader!css-loader!sass-loader'
     }
   },
@@ -44,5 +47,8 @@ module.exports = {
   },
   resolve: {
     alias: {vue: 'vue/dist/vue.js'}
-  }
+  },
+  plugins: [
+    extractCSS
+  ]
 }
