@@ -1,18 +1,17 @@
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 let extractCSS = new ExtractTextPlugin('styles.css');
 
 module.exports = {
   entry: './docs/src/main.js',
-
   output: {
     path: './docs/dist',
-    publicPath: "/dist/",
+    publicPath: '/dist/',
     filename: 'bundle.js'
   },
 	devServer: {
-		inline: true,
-		contentBase: './',
-		port: 3000
+  inline: true,
+  contentBase: './',
+  port: 3000
 	},
   module: {
     loaders: [
@@ -32,7 +31,15 @@ module.exports = {
       {
         test:  /\.css$/,
         loader: extractCSS.extract('style-loader', 'css-loader')
-      }
+      },
+      {
+        test: /\.html$/,
+        loader: 'html'
+      },
+      {
+        test: /\.json$/,
+        loader: 'json'
+      },
     ]
   },
   vue: {
@@ -46,7 +53,11 @@ module.exports = {
     plugins: ['transform-runtime']
   },
   resolve: {
-    alias: {vue: 'vue/dist/vue.js'}
+    alias: { vue: 'vue/dist/vue.js' },
+    modulesDirectories: [
+      __dirname,
+      'node_modules'
+    ],
   },
   plugins: [
     extractCSS
