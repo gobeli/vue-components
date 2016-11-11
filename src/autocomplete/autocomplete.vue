@@ -20,7 +20,7 @@ class Autocomplete {
     * @param Number displayedItems - Number of items shown when the dropdown is opened
     * @param String selected - Default text / selected Item
   */
-  constructor(displayedItems, selected) {
+  constructor(displayedItems = 3, selected = null) {
     this.displayedItems = displayedItems;
     this.selected = selected;
     this.focused = selected;

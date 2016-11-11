@@ -1,6 +1,7 @@
 <template lang="html">
   <div id="checkedDropdown">
     <h2>Checked Dropdown</h2>
+
     <ui-checked-dropdown style="width: 300px" :checked-dropdown="checkedDropdown" placeholder="Please select">
       <ui-checked-dropdown-item value="cdi1" text="One"></ui-checked-dropdown-item>
       <ui-checked-dropdown-item value="cdi2" text="Two"></ui-checked-dropdown-item>
@@ -13,6 +14,9 @@
     </ui-checked-dropdown>
     <pre class="highlight">Selected items:
     {{checkedDropdown.selectedItems}}</pre>
+
+    <h4>Usage</h4>
+
   </div>
 </template>
 

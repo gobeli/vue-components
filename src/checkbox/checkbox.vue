@@ -7,7 +7,7 @@
       <path class="icon" v-show="showTick" d="M6 12 L8 14 L14 6" />
     </svg>
     <div class="label">
-      {{checkbox.text}}
+      <slot></slot>
     </div>
   </div>
 </template>
@@ -18,15 +18,13 @@
 */
 class Checkbox {
   /**
-    * @param String name - Name of the control
-    * @param Boolean checked - Initial check state of the control
-    * @param string text - Text which will be displayed
-    * @param string type - Type of the checkbox ('cross' or 'tick')
+    * @param {Boolean} checked - Initial check state of the control
+    * @param {String} type - Type of the checkbox ('cross' or 'tick')
+    * @param {String} size - Size of the checkbox
   */
 
-  constructor(checked, text, type, size) {
+  constructor(checked, type, size) {
     this.checked = checked;
-    this.text = text;
     this.type = type;
     this.size = size;
   }

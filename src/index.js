@@ -1,4 +1,4 @@
-import Checkbox from './checkbox.vue';
+import Checkbox from './checkbox/checkbox.vue';
 import RadiobuttonGroup from './radiobutton-group/radiobutton-group.vue';
 import Radiobutton from './radiobutton-group/radiobutton.vue';
 import Dropdown from './dropdown/dropdown.vue';

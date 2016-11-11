@@ -18,7 +18,10 @@ export default {
   AutocompleteItem,
   name: 'autocomplete-item',
   props: {
-    value: String,
+    value: {
+      type: String,
+      required: true
+    },
     text: String
   },
   computed: {

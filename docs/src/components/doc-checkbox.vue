@@ -2,56 +2,52 @@
   <div id="checkbox"><!-- Checkbox -->
     <h2>Checkbox</h2>
 
-    <ui-checkbox :checkbox="checkbox1"></ui-checkbox>
-    <ui-checkbox :checkbox="checkbox2"></ui-checkbox>
+    <ui-checkbox :checkbox="checkbox1">Checkbox 1</ui-checkbox>
+    <ui-checkbox :checkbox="checkbox2">Checkbox 2</ui-checkbox>
     <p>
       Checkbox1: <code>{{checkbox1.checked}}</code><br>
       Checkbox2: <code>{{checkbox2.checked}}</code>
     </p>
+
+    <h4>Usage</h4>
+    <pre class="highlight prettyprint">const checkbox = new ui.Checkbox.Checkbox(false, 'Checkbox 2', 'tick', '20px');
+&lt;ui-checkbox :checkbox=&quot;checkbox&quot;&gt;&lt;/ui-checkbox&gt;</pre>
     <p>The <code>autocomplete</code> component takes an <code>Object</code> of the Type
     <code>Autocomplete</code> as a parameter. The constructor requires the following parameters:</p>
-    <div class="table-container">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Desciption</th>
-          </tr>
-        </thead>
-        <thead>
-          <tr>
-            <td>checked</td>
-            <td>Boolean</td>
-            <td>Checke state true = checked, false = unchecked</td>
-          </tr>
-          <tr>
-            <td>text</td>
-            <td>String</td>
-            <td>Text which will be displayed and searched by the user.</td>
-          </tr>
-          <tr>
-            <td>type</td>
-            <td>String</td>
-            <td>The type of the checkbox (either <code>tick</code> or <code>cross</code>)</td>
-          </tr>
-        </thead>
-      </table>
-    </div>
+    <doc-table :options="options"></doc-table>
   </div>
 </template>
 
 <script>
 import ui from 'src';
+import DocTable from './doc-table.vue';
+
 export default {
   data() {
     return {
-      checkbox1: new ui.Checkbox.Checkbox(true, 'Checkbox 1', 'cross', '20px'),
-      checkbox2: new ui.Checkbox.Checkbox(false, 'Checkbox 2', 'tick', '20px')
+      checkbox1: new ui.Checkbox.Checkbox(true, 'cross', '20px'),
+      checkbox2: new ui.Checkbox.Checkbox(false, 'tick', '20px'),
+      options: [{
+        name: 'checked',
+        type: 'Boolean',
+        required: 'Yes',
+        description: 'Checke state true = checked, false = unchecked'
+      }, {
+        name: 'type',
+        type: 'String',
+        required: 'Yes',
+        description: 'The type of the checkbox (either <code>tick</code> or <code>cross</code>).'
+      }, {
+        name: 'size',
+        type: 'String',
+        required: 'Yes',
+        description: 'Size of the checkbox.'
+      }]
     };
   },
   components: {
-    UiCheckbox: ui.Checkbox
+    UiCheckbox: ui.Checkbox,
+    DocTable
   }
 };
 </script>

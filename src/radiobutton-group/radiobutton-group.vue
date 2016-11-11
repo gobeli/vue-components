@@ -10,11 +10,10 @@
 */
 class RadiobuttonGroup {
   /**
-    * @param String name - Name of the control
     * @param String selected - name of the selected radiobutton
   */
-  constructor(name, selectedName) {
-    this.name = name;
+  constructor(radiobuttonSize, selectedName = '') {
+    this.radiobuttonSize = radiobuttonSize;
     this.selectedName = selectedName;
   }
 }
@@ -35,30 +34,3 @@ export default {
   }
 };
 </script>
-<style lang="sass">
-  .radiobutton{
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-    &:last-child{
-      margin-bottom: 0;
-    }
-    .label{
-      margin-left: 5px;
-      cursor: default;
-    }
-    .icon{
-      stroke:#333;
-      stroke-width:2px;
-      stroke-dasharray: 25;
-      stroke-dashoffset: 25;
-      animation: draw .2s linear forwards;
-    }
-  }
-
-  @keyframes draw {
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
-</style>

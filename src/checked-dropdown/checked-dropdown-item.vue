@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import UiCheckbox from '../checkbox.vue';
+import UiCheckbox from '../checkbox/checkbox.vue';
 
 class CheckedDropdownItem {
   constructor(value, text) {
@@ -17,7 +17,7 @@ export default {
   name: 'checked-dropdown-item',
   data() {
     return {
-      checkbox: new UiCheckbox.Checkbox(false, this.text, 'cross', '1rem')
+      checkbox: new UiCheckbox.Checkbox(false, 'cross', '1rem')
     };
   },
   props: {
