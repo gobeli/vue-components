@@ -8,8 +8,10 @@
     </ui-radiobutton-group>
     <p>Selected: <code>{{radiobuttonGroup.selectedName}}</code></p>
     <h4>Usage</h4>
-    <pre class="highlight prettyprint">radiobuttonGroup = new ui.RadiobuttonGroup.RadiobuttonGroup('20px', 'rb1')
-&lt;ui-radiobutton-group :radiobutton-group=&quot;radiobuttonGroup&quot;&gt;
+    <h5>data</h5>
+    <pre class="highlight prettyprint">radiobuttonGroup: new ui.RadiobuttonGroup.RadiobuttonGroup('20px', 'rb1')</pre>
+    <h5>markup</h5>
+    <pre class="highlight prettyprint">&lt;ui-radiobutton-group :radiobutton-group=&quot;radiobuttonGroup&quot;&gt;
     &lt;ui-radiobutton name=&quot;rb1&quot;&gt;Radiobutton 1&lt;/ui-radiobutton&gt;
     &lt;ui-radiobutton name=&quot;rb3&quot;&gt;Radiobutton 3&lt;/ui-radiobutton&gt;
     &lt;ui-radiobutton name=&quot;rb2&quot;&gt;Radiobutton 2&lt;/ui-radiobutton&gt;

@@ -46,7 +46,7 @@ export default {
     },
     dropdownHeight() {
       const i = this.autocomplete.displayedItems;
-      return `calc(1.5rem*${i} + 6px*${i} + 1rem)`;
+      return `calc(1.5rem*${i} + 1rem + 6px*${i})`;
     }
   },
   mounted() {

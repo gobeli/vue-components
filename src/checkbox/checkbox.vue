@@ -22,7 +22,6 @@ class Checkbox {
     * @param {String} type - Type of the checkbox ('cross' or 'tick')
     * @param {String} size - Size of the checkbox
   */
-
   constructor(checked, type, size) {
     this.checked = checked;
     this.type = type;

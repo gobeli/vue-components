@@ -10,8 +10,10 @@
     </p>
 
     <h4>Usage</h4>
-    <pre class="highlight prettyprint">const checkbox = new ui.Checkbox.Checkbox(false, 'Checkbox 2', 'tick', '20px');
-&lt;ui-checkbox :checkbox=&quot;checkbox&quot;&gt;&lt;/ui-checkbox&gt;</pre>
+    <h5>data</h5>
+    <pre class="highlight prettyprint">checkbox: new ui.Checkbox.Checkbox(false, 'Checkbox 2', 'tick', '20px');</pre>
+    <h5>markup</h5>
+    <pre class="highlight prettyprint">&lt;ui-checkbox :checkbox=&quot;checkbox&quot;&gt;&lt;/ui-checkbox&gt;</pre>
     <p>The <code>autocomplete</code> component takes an <code>Object</code> of the Type
     <code>Autocomplete</code> as a parameter. The constructor requires the following parameters:</p>
     <doc-table :options="options"></doc-table>

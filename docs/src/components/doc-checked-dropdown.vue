@@ -3,17 +3,14 @@
     <h2>Checked Dropdown</h2>
 
     <ui-checked-dropdown style="width: 300px" :checked-dropdown="checkedDropdown" placeholder="Please select">
-      <ui-checked-dropdown-item value="cdi1" text="One"></ui-checked-dropdown-item>
-      <ui-checked-dropdown-item value="cdi2" text="Two"></ui-checked-dropdown-item>
-      <ui-checked-dropdown-item value="cdi3" text="Three"></ui-checked-dropdown-item>
-      <ui-checked-dropdown-item value="cdi4" text="Four"></ui-checked-dropdown-item>
-      <ui-checked-dropdown-item value="cdi5" text="Five"></ui-checked-dropdown-item>
-      <ui-checked-dropdown-item value="cdi6" text="Six"></ui-checked-dropdown-item>
-      <ui-checked-dropdown-item value="cdi7" text="Seven"></ui-checked-dropdown-item>
-      <ui-checked-dropdown-item value="cdi8" text="Eight"></ui-checked-dropdown-item>
+      <ui-checked-dropdown-item value="1" text="One"></ui-checked-dropdown-item>
+      <ui-checked-dropdown-item value="2" text="Two"></ui-checked-dropdown-item>
+      <ui-checked-dropdown-item value="3" text="Three"></ui-checked-dropdown-item>
+      <ui-checked-dropdown-item value="4" text="Four"></ui-checked-dropdown-item>
     </ui-checked-dropdown>
-    <pre class="highlight">Selected items:
-    {{checkedDropdown.selectedItems}}</pre>
+    <p>
+      Selected: <code>{{checkedDropdown.selectedItems}}</code>
+    </p>
 
     <h4>Usage</h4>
 

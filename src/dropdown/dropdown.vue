@@ -16,12 +16,11 @@ class Dropdown {
   /**
     * @param String name - Name of the control
     * @param DropdownItem selected - Default selected Item / p
-                                     pass null if you want the placeholder to show
-    * @param Number displayedItems - Number of items shown when the dropdown is opened
+                                     pass nothing if you want the placeholder to show
   */
-  constructor(selected, displayedItems) {
-    this.selected = null;
+  constructor(displayedItems, selected) {
     this.displayedItems = displayedItems;
+    this.selected = selected;
   }
 }
 

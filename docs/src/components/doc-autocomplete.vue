@@ -6,9 +6,11 @@
     </ui-autocomplete>
     <p>selected: <code>{{autocomplete.selected}}</code></p>
     <h4>Usage</h4>
-    <pre class="highlight prettyprint">const countries = ["Afghanistan","Albania"....]
-const autocomplete = new ui.Autocomplete.Autocomplete(3)
-&lt;ui-autocomplete style=&quot;min-width: 300px&quot; :autocomplete=&quot;autocomplete&quot;&gt;
+    <h5>data</h5>
+    <pre class="highlight prettyprint">countries: ["Afghanistan","Albania"....],
+autocomplete: new ui.Autocomplete.Autocomplete(3)</pre>
+    <h5>markup</h5>
+    <pre class="highlight prettyprint">&lt;ui-autocomplete :autocomplete=&quot;autocomplete&quot;&gt;
   &lt;ui-autocomplete-item v-for=&quot;country in countries&quot; :value=&quot;country&quot; :text=&quot;country&quot;&gt;&lt;/ui-autocomplete-item&gt;
 &lt;/ui-autocomplete&gt;</pre>
 

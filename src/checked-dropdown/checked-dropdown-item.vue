@@ -1,6 +1,6 @@
 <template lang="html">
   <a href="#" class="dropdown-item" @click.stop.prevent>
-    <ui-checkbox :checkbox="checkbox"></ui-checkbox>
+    <ui-checkbox :checkbox="checkbox">{{text}}</ui-checkbox>
   </a>
 </template>
 
