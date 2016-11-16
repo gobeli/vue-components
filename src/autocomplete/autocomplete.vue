@@ -5,39 +5,26 @@
       @keyup.up.prevent="search_keyup(false)"
       @keyup.down.prevent="search_keyup(true)"
       @keyup.enter="search_enter()" />
-    <div class="dropdown-menu" v-show="search.length > 0 && !autocomplete.selected"  v-bind:style="{maxHeight: this.dropdownHeight}">
+    <div class="dropdown-menu" v-show="search.length > 0 && !value"  v-bind:style="{maxHeight: this.dropdownHeight}">
       <slot></slot>
     </div>
   </div>
 </template>
 
 <script>
-/**
-  * @desc Describes props of the autocomplete
-*/
-class Autocomplete {
-  /**
-    * @param Number displayedItems - Number of items shown when the dropdown is opened
-    * @param String selected - Default text / selected Item
-  */
-  constructor(displayedItems = 3, selected = null) {
-    this.displayedItems = displayedItems;
-    this.selected = selected;
-    this.focused = selected;
-  }
-}
-
 export default {
-  Autocomplete,
   name: 'autocomplete',
   data() {
     return {
       search: '',
-      autocompleteItems: []
+      autocompleteItems: [],
+      focused: null
     };
   },
   props: {
-    autocomplete: Autocomplete
+    value: [Number, String],
+    disabled: Boolean,
+    displayedItems: Number
   },
   computed: {
     filteredItems() {
@@ -45,20 +32,16 @@ export default {
         i.text.toLowerCase().includes(this.search.toLowerCase()));
     },
     dropdownHeight() {
-      const i = this.autocomplete.displayedItems;
+      const i = this.displayedItems;
       return `calc(1.5rem*${i} + 1rem + 6px*${i})`;
     }
   },
   mounted() {
     this.autocompleteItems = this.$children.map(c => c.autocompleteItem);
-
-    this.$on('selected-changed', selected => {
-      this.select(selected);
-    });
   },
   methods: {
     search_keyup(next) {
-      const item = this.autocomplete.focused;
+      const item = this.focused;
       let i = 0;
       if (item != null && this.filteredItems != null) {
         i = this.filteredItems.indexOf(item);
@@ -66,21 +49,21 @@ export default {
       }
       const newItem = this.filteredItems[i];
       if (newItem !== undefined) {
-        this.autocomplete.focused = newItem;
+        this.focused = newItem;
       }
     },
     search_enter() {
-      if (!this.autocomplete.focused) return;
-      this.select(this.autocomplete.focused);
+      if (!this.focused) return;
+      this.select(this.focused);
     },
-    select(item) {
-      this.autocomplete.selected = item;
-      if (item) this.search = item.text;
+    select(autocompleteItem) {
+      this.$emit('input', autocompleteItem == null ? null : autocompleteItem.value);
+      if (autocompleteItem != null && autocompleteItem.value) this.search = autocompleteItem.text;
     }
   },
   watch: {
     search() {
-      this.autocomplete.focused = null;
+      this.focused = null;
       const filtered = this.autocompleteItems.filter(i => i.text === this.search);
       if (filtered.length > 0) this.select(filtered[0]);
       else this.select(null);

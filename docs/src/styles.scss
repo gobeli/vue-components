@@ -21,18 +21,21 @@ pre.prettyprint{
   background-color: #f7f7f9;
   position: fixed;
   height: 100%;
-  z-index: 1;
+  z-index: 2;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  padding-top: 1rem;
 }
 
-.menu, .content{
+.content{
   padding-top: calc(2em + 2rem);
 }
 
 .navbar{
   background-color: #FFF;
   box-shadow:  0 2px 4px 0 rgba(0,0,0,.2);
+  z-index: 1;
   &-toggler{
+    cursor: pointer;
     border: none;
     &:focus{
       outline: none;

@@ -1,7 +1,7 @@
 <template lang="html">
-  <div class="btn-group" v-on-clickaway="close">
-    <button class="btn btn-secondary dropdown-toggle"  @click="toggle" type="button">
-      {{(dropdown.selected ? dropdown.selected.text : placeholder)}}
+  <div class="btn-group">
+    <button class="btn btn-secondary dropdown-toggle" :disabled="disabled"  @click="toggle" type="button">
+      {{(value ? selectedText : placeholder)}}
     </button>
     <div class="dropdown-menu" v-bind:style="{maxHeight: dropdownHeight}" v-show="!isClosed">
       <slot></slot>
@@ -10,36 +10,26 @@
 </template>
 
 <script>
-import { mixin as clickaway } from 'vue-clickaway';
-
-class Dropdown {
-  /**
-    * @param String name - Name of the control
-    * @param DropdownItem selected - Default selected Item / p
-                                     pass nothing if you want the placeholder to show
-  */
-  constructor(displayedItems, selected) {
-    this.displayedItems = displayedItems;
-    this.selected = selected;
-  }
-}
-
 export default {
-  Dropdown,
   name: 'ui-dropdown',
-  mixins: [clickaway],
+  props: {
+    value: {
+      type: [Number, String],
+      required: true
+    },
+    disabled: Boolean,
+    placeholder: String,
+    displayedItems: Number
+  },
   data() {
     return {
+      selectedText: null,
       isClosed: true
     };
   },
-  props: {
-    dropdown: Dropdown,
-    placeholder: String
-  },
   computed: {
     dropdownHeight() {
-      const i = this.dropdown.displayedItems;
+      const i = this.displayedItems;
       return `calc(1.5rem*${i} + 6px*${i} + 1rem)`;
     }
   },
@@ -47,36 +37,22 @@ export default {
     toggle() {
       this.isClosed = !this.isClosed;
     },
-    close() {
-      if (!this.isClosed) this.toggle();
+    setSelected(value, text) {
+      this.$emit('input', value);
+      this.selectedText = text;
+      this.toggle();
     }
   },
   mounted() {
-    this.$on('selected-changed', selected => {
-      this.dropdown.selected = selected;
-      this.toggle();
-    });
-  }
-};
-</script>
-
-<style lang="sass">
-.btn-group{
-  .dropdown-menu{
-    display: block;
-    overflow-y: auto;
-  }
-  .dropdown-menu, .dropdown-toggle{
-    width: 100%;
-    &.dropdown-toggle{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      span{
-        overflow: hidden;
-        text-overflow: ellipsis;
+    if (this.value) {
+      let child = this.$children.filter(c => c.value.toString() === this.value.toString())[0];
+      if (typeof this.value === 'number') {
+        child = this.$children.filter(c => parseInt(c.value, 10) === parseInt(this.value, 10))[0];
+      }
+      if (child != null) {
+        this.selectedText = child.text;
       }
     }
   }
-}
-</style>
+};
+</script>

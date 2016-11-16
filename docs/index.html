@@ -16,17 +16,17 @@
           <div class="col-xs-8 col-md-5 col-lg-3 menu" v-show="navOpen">
             <ul class="nav">
               <li><h4>Components</h4></li>
-              <li class="nav-item"><a href="#autocomplete">Autocomplete</a></li>
-              <li class="nav-item"><a href="#checkbox">Checkbox</a></li>
-              <li class="nav-item"><a href="#radiobuttonGroup">Radiobutton Group</a></li>
-              <li class="nav-item"><a href="#dropdown">Dropdown</a></li>
-              <li class="nav-item"><a href="#checkedDropdown">Checked Dropdown</a></li>
-              <li class="nav-item"><a href="#grid">Grid</a></li>
+              <li @click="toggleNav(false)" class="nav-item"><a href="#autocomplete">Autocomplete</a></li>
+              <li @click="toggleNav(false)" class="nav-item"><a href="#checkbox">Checkbox</a></li>
+              <li @click="toggleNav(false)" class="nav-item"><a href="#radiobuttonGroup">Radiobutton Group</a></li>
+              <li @click="toggleNav(false)" class="nav-item"><a href="#dropdown">Dropdown</a></li>
+              <li @click="toggleNav(false)" class="nav-item"><a href="#checkedDropdown">Checked Dropdown</a></li>
+              <li @click="toggleNav(false)" class="nav-item"><a href="#grid">Grid</a></li>
             </ul>
           </div>
         </transition>
         <div class="content container" @click="toggleNav(false)">
-          <new-dd v-model="dropdownValue" placeholder="test" :displayed-items="3">
+          <!--<new-dd v-model="dropdownValue" placeholder="test" :displayed-items="3">
             <new-dd-item value="1">Test1</new-dd-item>
             <new-dd-item value="2">Test2</new-dd-item>
             <new-dd-item value="3">Test3</new-dd-item>
@@ -36,7 +36,7 @@
             <new-radiobuttton name="xy" value="1">One</new-radiobuttton>
             <new-radiobuttton name="yx" value="2">Two</new-radiobuttton>
           </new-radiobutton-group>
-          <new-checkbox v-model="checkboxValue" type="tick" size="20px">Checkbox 1</new-checkbox>
+          <new-checkbox v-model="checkboxValue" type="tick" size="20px">Checkbox 1</new-checkbox>-->
           <doc-autocomplete></doc-autocomplete>
           <doc-checkbox></doc-checkbox>
           <doc-radiobutton-group></doc-radiobutton-group>

@@ -1,28 +1,23 @@
 <template lang="html">
   <a class="dropdown-item"
-    v-bind:class="{ active: autocompleteItem == $parent.autocomplete.focused }"
+    v-bind:class="{ active: autocompleteItem == $parent.focused }"
     @click="select()" v-html="highlightedText"
     v-show="$parent.filteredItems.indexOf(autocompleteItem) >= 0">
   </a>
 </template>
 
 <script>
-class AutocompleteItem {
-  constructor(value, text) {
-    this.value = value;
-    this.text = text;
-  }
-}
-
 export default {
-  AutocompleteItem,
   name: 'autocomplete-item',
   props: {
     value: {
-      type: String,
+      type: [Number, String],
       required: true
     },
-    text: String
+    text: {
+      type: [String],
+      required: true
+    }
   },
   computed: {
     highlightedText() {
@@ -32,12 +27,12 @@ export default {
       return this.text.replace(re, `<mark>${matches[0]}</mark>`).replace(' ', '&nbsp;');
     },
     autocompleteItem() {
-      return new AutocompleteItem(this.value, this.text);
+      return { value: this.value, text: this.text };
     }
   },
   methods: {
     select() {
-      this.$parent.$emit('selected-changed', this.autocompleteItem);
+      this.$parent.select(this.autocompleteItem);
     }
   }
 };

@@ -1,6 +1,6 @@
 <template>
-  <div class="checkbox" @click="toggle">
-    <svg v-bind:width="checkbox.size" v-bind:height="checkbox.size" viewBox="0 0 20 20" style="fill:transparent;border-radius:2px">
+  <div class="checkbox" @click="toggle" :class="{'disabled': disabled}">
+    <svg v-bind:width="size" v-bind:height="size" viewBox="0 0 20 20" style="fill:transparent;border-radius:2px">
       <rect x="0" y="0" width="20" height="20"  style="stroke-width: 3px;stroke:#333;fill:transparent;" />
       <line class="icon" v-show="showCross" x1="6" y1="6" x2="14" y2="14" style="animation: draw .1s linear forwards 0s;" />
       <line class="icon" v-show="showCross" x2="14" y2="6" x1="6" y1="14" style="animation: draw .1s linear forwards .1s;" />
@@ -13,44 +13,38 @@
 </template>
 
 <script>
-/**
-  * @desc Describes props of the checkbox
-*/
-class Checkbox {
-  /**
-    * @param {Boolean} checked - Initial check state of the control
-    * @param {String} type - Type of the checkbox ('cross' or 'tick')
-    * @param {String} size - Size of the checkbox
-  */
-  constructor(checked, type, size) {
-    this.checked = checked;
-    this.type = type;
-    this.size = size;
-  }
-}
-
 export default {
-  Checkbox,
   name: 'ui-checkbox',
   props: {
-    checkbox: Checkbox
+    value: {
+      type: Boolean,
+      required: true
+    },
+    size: {
+      type: String,
+      required: true
+    },
+    disabled: Boolean,
+    type: String
   },
   computed: {
     showCross() {
-      return this.checkbox.type === 'cross' && this.checkbox.checked;
+      return this.type === 'cross' && this.value;
     },
     showTick() {
-      return this.checkbox.type === 'tick' && this.checkbox.checked;
+      return this.type === 'tick' && this.value;
     }
   },
   methods: {
     toggle() {
-      this.checkbox.checked = !this.checkbox.checked;
+      if (!this.disabled) {
+        this.$emit('input', !this.value);
+      }
     }
   },
   mounted() {
-    if (this.checkbox.type !== 'cross' && this.checkbox.type !== 'tick') {
-      console.error(`The checkbox type has to be either 'cross' or 'tick', got ${this.checkbox.type}!`);
+    if (this.type !== 'cross' && this.type !== 'tick') {
+      throw new Error(`The checkbox type has to be either 'cross' or 'tick', got ${this.type}!`);
     }
   }
 };
@@ -71,6 +65,10 @@ export default {
       stroke-dasharray: 25;
       stroke-dashoffset: 25;
       animation: draw .2s linear forwards;
+    }
+    &.disabled{
+      cursor: not-allowed;
+      opacity: .65;
     }
   }
 

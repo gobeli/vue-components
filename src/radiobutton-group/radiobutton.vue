@@ -1,6 +1,6 @@
 <template lang="html">
     <div @click="select()" class="radiobutton">
-      <svg v-bind:width="$parent.radiobuttonGroup.radiobuttonSize" v-bind:height="$parent.radiobuttonGroup.radiobuttonSize" viewBox="0 0 20 20" style="fill:transparent">
+      <svg width="20px" height="20px" viewBox="0 0 20 20" style="fill:transparent">
         <circle cx="10" cy="10" r="9" width="20" height="20" style="stroke-width: 2px;stroke:#333;fill:transparent;" />
         <path class="icon" v-show="show" d="M6,10a4,4 0 1,0 8,0a4,4 0 1,0 -8,0"/>
       </svg>
@@ -14,20 +14,20 @@
 export default {
   name: 'ui-radiobutton',
   props: {
-    name: {
-      type: String,
+    value: {
+      type: [Number, String],
       required: true
-    }
+    },
+    name: String
   },
   computed: {
     show() {
-      return this.$parent.radiobuttonGroup.selectedName
-        && this.name === this.$parent.radiobuttonGroup.selectedName;
+      return this.$parent.value === this.value;
     }
   },
   methods: {
     select() {
-      this.$parent.radiobuttonGroup.selectedName = this.name;
+      this.$parent.setSelected(this.value);
     }
   }
 };
