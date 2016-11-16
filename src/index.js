@@ -8,6 +8,12 @@ import AutocompleteItem from './autocomplete/autocomplete-item.vue';
 import CheckedDropdown from './checked-dropdown/checked-dropdown.vue';
 import CheckedDropdownItem from './checked-dropdown/checked-dropdown-item.vue';
 import Grid from './grid/grid.vue';
+
+import NewDropdown from './tryouts/dropdown/dropdown.vue';
+import NewDropdownItem from './tryouts/dropdown/dropdown-item.vue';
+import NewRadiobuttonGroup from './tryouts/radiobutton-group/radiobutton-group.vue';
+import NewRadiobutton from './tryouts/radiobutton-group/radiobutton.vue';
+import NewCheckbox from './tryouts/checkbox/checkbox.vue';
 export default {
   Checkbox,
   RadiobuttonGroup,
@@ -18,5 +24,10 @@ export default {
   CheckedDropdownItem,
   Autocomplete,
   AutocompleteItem,
-  Grid
+  Grid,
+  NewDropdown,
+  NewDropdownItem,
+  NewRadiobuttonGroup,
+  NewRadiobutton,
+  NewCheckbox
 };
