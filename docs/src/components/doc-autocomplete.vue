@@ -2,7 +2,7 @@
   <div id="autocomplete">
     <h2>Autocomplete</h2>
     <ui-autocomplete class="demo" style="min-width: 300px" v-model="value" :displayed-items="3">
-      <ui-autocomplete-item v-for="country in countries" :value="country" :text="country"></ui-autocomplete-item>
+      <ui-autocomplete-item v-for="country in countries" :value="country">{{country}}</ui-autocomplete-item>
     </ui-autocomplete>
     <p>selected: <code>{{value}}</code></p>
     <h4>Usage</h4>

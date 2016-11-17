@@ -2,16 +2,16 @@
   <div id="checkedDropdown">
     <h2>Checked Dropdown</h2>
 
-    <ui-checked-dropdown style="width: 300px" :checked-dropdown="checkedDropdown" placeholder="Please select">
-      <ui-checked-dropdown-item value="1" text="One"></ui-checked-dropdown-item>
-      <ui-checked-dropdown-item value="2" text="Two"></ui-checked-dropdown-item>
-      <ui-checked-dropdown-item value="3" text="Three"></ui-checked-dropdown-item>
-      <ui-checked-dropdown-item value="4" text="Four"></ui-checked-dropdown-item>
+    <ui-checked-dropdown style="width: 200px" :displayed-items="3" v-model="value" placeholder="Please select">
+      <ui-checked-dropdown-item value="1">One</ui-checked-dropdown-item>
+      <ui-checked-dropdown-item value="2">Two</ui-checked-dropdown-item>
+      <ui-checked-dropdown-item value="3">Three</ui-checked-dropdown-item>
+      <ui-checked-dropdown-item value="4">Four</ui-checked-dropdown-item>
+      <ui-checked-dropdown-item value="5">Five</ui-checked-dropdown-item>
     </ui-checked-dropdown>
     <p>
-      Selected: <code>{{checkedDropdown.selectedItems}}</code>
+      Selected: <code>{{value}}</code>
     </p>
-
     <h4>Usage</h4>
 
   </div>
@@ -24,7 +24,7 @@ export default {
   name: 'doc-checked-dropdown',
   data() {
     return {
-      checkedDropdown: new ui.CheckedDropdown.CheckedDropdown(3)
+      value: []
     };
   },
   components: {

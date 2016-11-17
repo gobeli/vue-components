@@ -17,8 +17,7 @@ export default {
     value: {
       type: [Number, String],
       required: true
-    },
-    name: String
+    }
   },
   computed: {
     show() {

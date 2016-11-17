@@ -3,19 +3,23 @@
     v-bind:class="{ active: autocompleteItem == $parent.focused }"
     @click="select()" v-html="highlightedText"
     v-show="$parent.filteredItems.indexOf(autocompleteItem) >= 0">
+    <span class="hidden-xs-up" ref="text">
+      <slot></slot>
+    </span>
   </a>
 </template>
 
 <script>
 export default {
   name: 'autocomplete-item',
+  data() {
+    return {
+      text: ''
+    };
+  },
   props: {
     value: {
       type: [Number, String],
-      required: true
-    },
-    text: {
-      type: [String],
       required: true
     }
   },
@@ -34,6 +38,9 @@ export default {
     select() {
       this.$parent.select(this.autocompleteItem);
     }
+  },
+  mounted() {
+    this.text = this.$refs.text.textContent;
   }
 };
 </script>

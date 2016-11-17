@@ -1,28 +1,36 @@
 <template lang="html">
-  <div class="btn-group">
-    <input type="text" name="search" class="form-control"
+  <div class="btn-group" v-on-clickaway="() => {open = false}">
+    <input type="text" name="search" class="form-control" :disabled="disabled"
       v-model="search"
       @keyup.up.prevent="search_keyup(false)"
       @keyup.down.prevent="search_keyup(true)"
-      @keyup.enter="search_enter()" />
-    <div class="dropdown-menu" v-show="search.length > 0 && !value"  v-bind:style="{maxHeight: this.dropdownHeight}">
+      @keyup.enter="search_enter()"
+      v-on:focus="open = true" />
+    <div class="dropdown-menu" v-show="search.length > 0 && !value && open"  v-bind:style="{maxHeight: this.dropdownHeight}">
       <slot></slot>
     </div>
   </div>
 </template>
 
 <script>
+import { mixin as clickaway } from 'vue-clickaway';
+
 export default {
+  mixins: [clickaway],
   name: 'autocomplete',
   data() {
     return {
       search: '',
       autocompleteItems: [],
-      focused: null
+      focused: null,
+      open: false
     };
   },
   props: {
-    value: [Number, String],
+    value: {
+      type: [Number, String],
+      required: true
+    },
     disabled: Boolean,
     displayedItems: Number
   },
@@ -57,16 +65,21 @@ export default {
       this.select(this.focused);
     },
     select(autocompleteItem) {
-      this.$emit('input', autocompleteItem == null ? null : autocompleteItem.value);
-      if (autocompleteItem != null && autocompleteItem.value) this.search = autocompleteItem.text;
+      this.$emit('input', !autocompleteItem ? null : autocompleteItem.value);
+      if (autocompleteItem && autocompleteItem.value) this.search = autocompleteItem.text;
     }
   },
   watch: {
     search() {
       this.focused = null;
-      const filtered = this.autocompleteItems.filter(i => i.text === this.search);
+      const filtered = this.autocompleteItems
+        .filter(i => i.text.toLowerCase() === this.search.toLowerCase());
       if (filtered.length > 0) this.select(filtered[0]);
       else this.select(null);
+    },
+    value() {
+      const filtered = this.autocompleteItems.filter(i => i.value === this.value);
+      if (filtered.length > 0) this.select(filtered[0]);
     }
   }
 };
@@ -76,6 +89,7 @@ export default {
   .dropdown-menu{
     overflow-y: auto;
     width: 100%;
+    z-index: 0;
   }
   mark{
     padding: 0;

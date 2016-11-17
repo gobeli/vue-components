@@ -1,9 +1,9 @@
 <template lang="html">
-  <div class="btn-group" v-on-clickaway="close">
-    <button class="btn btn-secondary dropdown-toggle"  @click="toggle" type="button">
-      <span>{{selectedString}}</span>
+  <div class="btn-group checked-dropdown" v-on-clickaway="close" :disabled="disabled">
+    <button class="btn btn-secondary dropdown-toggle checked-dropdown-toggle"  @click="toggle" type="button">
+      <span v-html="selectedString"></span>
     </button>
-    <div class="dropdown-menu" v-bind:style="{maxHeight: dropdownHeight}" v-show="!isClosed">
+    <div class="dropdown-menu checked-dropdown-menu" v-bind:style="{maxHeight: dropdownHeight}" v-show="!isClosed">
       <slot></slot>
     </div>
   </div>
@@ -12,15 +12,7 @@
 <script>
 import { mixin as clickaway } from 'vue-clickaway';
 
-class CheckedDropdown {
-  constructor(displayedItems, ...selectedItems) {
-    this.displayedItems = displayedItems;
-    this.selectedItems = selectedItems;
-  }
-}
-
 export default {
-  CheckedDropdown,
   name: 'ui-checked-dropdown',
   mixins: [clickaway],
   data() {
@@ -30,16 +22,17 @@ export default {
     };
   },
   props: {
-    checkedDropdown: CheckedDropdown,
+    value: {
+      type: Array,
+      required: true
+    },
+    disabled: Boolean,
+    displayedItems: Number,
     placeholder: String
   },
   computed: {
-    selectedString() {
-      const s = this.checkedDropdown.selectedItems.map(item => item.text).join(', ');
-      return s === '' ? this.placeholder : s;
-    },
     dropdownHeight() {
-      const i = this.checkedDropdown.displayedItems;
+      const i = this.displayedItems;
       return `calc(1.5rem*${i} + 6px*${i} + 1rem)`;
     }
   },
@@ -49,31 +42,38 @@ export default {
     },
     close() {
       if (!this.isClosed) this.toggle();
+    },
+    select() {
+      const selected = this.$children.filter(c => c.checked);
+      const s = selected.map(item => `<span class="tag tag-default">${item.text}</span>`).join('');
+      this.selectedString = s === '' ? this.placeholder : s;
+      this.$emit('input', selected.map(c => c.checkedDropdownItem.value));
     }
   },
   mounted() {
-    this.$on('selected-changed', () => {
-      this.checkedDropdown.selectedItems =
-        this.$children.filter(c => c.checkbox.checked).map(c => c.checkedDropdownItem);
-    });
+    if (this.value.length <= 0) this.selectedString = this.placeholder;
   }
 };
 </script>
 <style lang="sass">
-.btn-group{
+.checked-dropdown{
   .dropdown-menu{
     display: block;
     overflow-y: auto;
   }
-  .dropdown-menu, .dropdown-toggle{
+  .checked-dropdown-menu, .checked-dropdown-toggle{
     width: 100%;
     &.dropdown-toggle{
       display: flex;
       align-items: center;
       justify-content: space-between;
-      span{
+      >span{
         overflow: hidden;
         text-overflow: ellipsis;
+      }
+      .tag{
+        color: #FFF;
+        margin-right: 3px;
       }
     }
   }

@@ -1,14 +1,14 @@
 <template lang="html">
   <div id="dropdown">
     <h2>Dropdown</h2>
-    <ui-dropdown style="width: 300px" :dropdown="dropdown" placeholder="Please select">
-      <ui-dropdown-item value="1" text="First"></ui-dropdown-item>
-      <ui-dropdown-item value="2" text="Second"></ui-dropdown-item>
-      <ui-dropdown-item value="3" text="Third"></ui-dropdown-item>
-      <ui-dropdown-item value="4" text="Fourth"></ui-dropdown-item>
+    <ui-dropdown style="width: 300px" v-model="value" placeholder="Please select">
+      <ui-dropdown-item :value="1">First</ui-dropdown-item>
+      <ui-dropdown-item :value="2">Second</ui-dropdown-item>
+      <ui-dropdown-item :value="3">Third</ui-dropdown-item>
+      <ui-dropdown-item :value="4">Fourth</ui-dropdown-item>
     </ui-dropdown>
     <p>
-      Selected: <code>{{dropdown.selected}}</code>
+      Selected: <code>{{value}}</code>
     </p>
     <h4>Usage</h4>
     <h5>data</h5>
@@ -36,7 +36,7 @@ import DocTable from './doc-table.vue';
 export default {
   data() {
     return {
-      dropdown: new ui.Dropdown.Dropdown(3),
+      value: 0,
       dropdownOptions: [{
         name: 'displayedItems',
         type: 'Number',

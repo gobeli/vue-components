@@ -1,12 +1,12 @@
 <template lang="html">
   <div id="radiobuttonGroup">
     <h2>Radiobuttons</h2>
-    <ui-radiobutton-group :radiobutton-group="radiobuttonGroup">
-      <ui-radiobutton name="rb1">Radiobutton 1</ui-radiobutton>
-      <ui-radiobutton name="rb3">Radiobutton 3</ui-radiobutton>
-      <ui-radiobutton name="rb2">Radiobutton 2</ui-radiobutton>
+    <ui-radiobutton-group v-model="radioButtonValue">
+      <ui-radiobutton :value="1">One</ui-radiobutton>
+      <ui-radiobutton :value="2">Two</ui-radiobutton>
+      <ui-radiobutton :value="2">Three</ui-radiobutton>
     </ui-radiobutton-group>
-    <p>Selected: <code>{{radiobuttonGroup.selectedName}}</code></p>
+    <p>Selected: <code>{{radioButtonValue}}</code></p>
     <h4>Usage</h4>
     <h5>data</h5>
     <pre class="highlight prettyprint">radiobuttonGroup: new ui.RadiobuttonGroup.RadiobuttonGroup('20px', 'rb1')</pre>
@@ -33,7 +33,7 @@ import DocTable from './doc-table.vue';
 export default {
   data() {
     return {
-      radiobuttonGroup: new ui.RadiobuttonGroup.RadiobuttonGroup('20px', 'rb1'),
+      radioButtonValue: '',
       radiobuttonGroupOptions: [{
         name: 'radiobuttonSize',
         type: 'String',

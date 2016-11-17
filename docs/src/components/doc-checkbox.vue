@@ -1,12 +1,11 @@
 <template lang="html">
   <div id="checkbox"><!-- Checkbox -->
     <h2>Checkbox</h2>
-
-    <ui-checkbox :checkbox="checkbox1">Checkbox 1</ui-checkbox>
-    <ui-checkbox :checkbox="checkbox2">Checkbox 2</ui-checkbox>
+    <ui-checkbox v-model="checkboxValue" type="tick" size="20px">Checkbox 1</ui-checkbox>
+    <ui-checkbox v-model="checkboxValue2" type="cross" size="20px">Checkbox 1</ui-checkbox>
     <p>
-      Checkbox1: <code>{{checkbox1.checked}}</code><br>
-      Checkbox2: <code>{{checkbox2.checked}}</code>
+      Checkbox1: <code>{{checkboxValue}}</code><br>
+      Checkbox2: <code>{{checkboxValue2}}</code>
     </p>
 
     <h4>Usage</h4>
@@ -27,8 +26,8 @@ import DocTable from './doc-table.vue';
 export default {
   data() {
     return {
-      checkbox1: new ui.Checkbox.Checkbox(true, 'cross', '20px'),
-      checkbox2: new ui.Checkbox.Checkbox(false, 'tick', '20px'),
+      checkboxValue: false,
+      checkboxValue2: true,
       options: [{
         name: 'checked',
         type: 'Boolean',

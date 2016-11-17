@@ -1,32 +1,32 @@
 <template lang="html">
   <a href="#" class="dropdown-item" @click.stop.prevent>
-    <ui-checkbox :checkbox="checkbox">{{text}}</ui-checkbox>
+    <ui-checkbox size="1rem" type="cross" v-model="checked">
+      <span ref="text">
+        <slot></slot>
+      </span>
+    </ui-checkbox>
   </a>
 </template>
 
 <script>
 import UiCheckbox from '../checkbox/checkbox.vue';
 
-class CheckedDropdownItem {
-  constructor(value, text) {
-    this.value = value;
-    this.text = text;
-  }
-}
 export default {
   name: 'checked-dropdown-item',
   data() {
     return {
-      checkbox: new UiCheckbox.Checkbox(false, 'cross', '1rem')
+      checked: false
     };
   },
   props: {
-    value: String,
-    text: String
+    value: [String, Number]
   },
   computed: {
+    text() {
+      return this.$refs.text.textContent;
+    },
     checkedDropdownItem() {
-      return new CheckedDropdownItem(this.value, this.text);
+      return { value: this.value, text: this.text };
     }
   },
   methods: {
@@ -34,10 +34,10 @@ export default {
       this.isClosed = !this.isClosed;
     }
   },
-  mounted() {
-    this.$watch('checkbox.checked', () => {
-      this.$parent.$emit('selected-changed');
-    });
+  watch: {
+    checked() {
+      this.$parent.select();
+    }
   },
   components: {
     UiCheckbox
